@@ -1,0 +1,10 @@
+version: '3.0'
+
+services:
+  page:
+    image: radiorabe/catpage:latest
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
