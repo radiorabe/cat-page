@@ -2,9 +2,13 @@ FROM python:3.7-alpine
 
 WORKDIR /app
 
-COPY requirements.txt /app/
+ARG DEV=false
 
-RUN pip install -r requirements.txt
+COPY requirements*.txt /app/
+
+RUN [[ "x${DEV}" != "xfalse" ]] \
+ && pip install -r requirements-dev.txt \
+ || pip install -r requirements.txt
 
 COPY . /app
 

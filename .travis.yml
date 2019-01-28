@@ -1,0 +1,13 @@
+language: minimal
+
+services:
+  - docker
+
+jobs:
+  include:
+    - name: "Test"
+      before_install:
+        - docker pull radiorabe/catpage
+      script:
+        - docker build -t catpage --build-arg DEV=true --cache-from radiorabe/catpage .
+        - docker run --user 0 --rm -ti -v `pwd`/cov:/tmp/cov catpage pytest --cov=app --cov-report=term --cov-fail-under=100

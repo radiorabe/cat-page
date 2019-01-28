@@ -1,2 +1,5 @@
-.python-version
-.env
+/.python-version
+/.env
+__pycache__
+/cov/
+/.coverage

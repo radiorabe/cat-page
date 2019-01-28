@@ -1,5 +1,11 @@
 # RaBe Cat Landing Page
 
+[![Build Status](https://travis-ci.com/radiorabe/cat-page.svg?branch=master)](https://travis-ci.com/radiorabe/cat-page) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+
+Overengineered intranet landing page for [Radio Bern RaBe](https://www.rabe.ch).
+
+![Screenshot of page.](docs/screenshot.png)
+
 ## Usage
 
 1. Navigate to page
@@ -36,4 +42,10 @@ docker-compose up -d
 pip install pre-commit
 pip install -r requirements-dev.txt -U
 pre-commit install
+```
+
+### Running tests
+
+```bash
+pytest --cov=app
 ```

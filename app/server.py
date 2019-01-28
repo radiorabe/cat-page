@@ -12,7 +12,7 @@ from werkzeug.wsgi import SharedDataMiddleware
 logger = logging.getLogger("catpage")
 
 
-def config():
+def config(parse=True):
     """Get ConfigargParse based configuration.
 
     The config file in /etc gets overriden by the one in $HOME which gets
@@ -35,21 +35,19 @@ def config():
         env_var="PAGE_BACKGROUND",
         default="https://rabe.ch/wp-content/uploads/2016/07/Header.gif",
     )
-    parser.add_argument(
-        "--links",
-        env_var="PAGE_LINKS",
-        action="append",
-        default=[]
-    )
+    parser.add_argument("--links", env_var="PAGE_LINKS", action="append", default=[])
     parser.add_argument("--address", env_var="PAGE_ADDRESS", default="0.0.0.0")
     parser.add_argument("--port", env_var="PAGE_PORT", default=5000)
     parser.add_argument("--thread-pool", env_var="PAGE_THREADPOOL", default=30)
     parser.add_argument("--dev", env_var="PAGE_DEVSERVER", default=False)
 
-    args = parser.parse_args()
-    logger.error(parser.format_values())
+    if parse:  # pragma: no cover
+        args = parser.parse_args()
+    else:
+        args = parser.parse_args([])
+    logger.info(parser.format_values())
 
-    if args.links == []:
+    if not args.links:
         args.links = [
             "Studiomail;//studiomail.int.example.org",
             "Homepage;https://www.rabe.ch",
@@ -121,7 +119,7 @@ def create_app(config, with_static=True):
     return app
 
 
-def run_devserver(app, config):
+def run_devserver(app, config):  # pragma: no cover
     from werkzeug.serving import run_simple
 
     logger.info("Starting development server")
@@ -129,7 +127,7 @@ def run_devserver(app, config):
     run_simple(config.address, config.port, app, use_debugger=True, use_reloader=True)
 
 
-def run_webserver(app, config):
+def run_webserver(app, config):  # pragma: no cover
     import cherrypy
 
     logger.info("Starting production server")
@@ -149,7 +147,7 @@ def run_webserver(app, config):
     cherrypy.engine.block()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     config = config()
     app = create_app(config)
     if config.dev:
