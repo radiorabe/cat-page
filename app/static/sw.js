@@ -4,14 +4,14 @@ self.addEventListener('install', function(e) {
    caches.open('catpage').then(function(cache) {
      return cache.addAll([
        '/',
-       '/static/funny-pictures-cat-sound-studio.jpg'
+       '/static/funny-pictures-cat-sound-studio.jpg',
+       '/static/fjalla-one-latin-400.woff2'
      ]);
    })
  );
 });
 
 self.addEventListener('fetch', function(e) {
-  console.log(e.request.url);
   e.respondWith(
     caches.match(e.request).then(function(response) {
       return response || fetch(e.request);

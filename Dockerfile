@@ -1,3 +1,11 @@
+FROM node:8.15-alpine as jsdep
+
+WORKDIR /app
+
+COPY package.json yarn.lock /app/
+
+RUN yarn install
+
 FROM python:3.7-alpine
 
 WORKDIR /app
@@ -11,6 +19,7 @@ RUN [[ "x${DEV}" != "xfalse" ]] \
  || pip install -r requirements.txt
 
 COPY . /app
+COPY --from=jsdep /app/node_modules/typeface-fjalla-one/files/fjalla-one-* /app/app/static/
 
 EXPOSE 5000
 

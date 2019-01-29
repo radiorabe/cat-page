@@ -9,12 +9,8 @@
     <style>
     @font-face {
         font-family: 'Fjalla One';
-        src: url('//rabe.ch/fonts/fjallaone-regular.eot');
-        src: url('//rabe.ch/fonts/fjallaone-regular.eot?#iefix') format('embedded-opentype'),
-             url('//rabe.ch/fonts/fjallaone-regular.woff2') format('woff2'),
-             url('//rabe.ch/fonts/fjallaone-regular.woff') format('woff'),
-             url('//rabe.ch/fonts/fjallaone-regular.ttf') format('truetype'),
-             url('//rabe.ch/fonts/fjallaone-regular.svg#fjalla_oneregular') format('svg');
+        src: local('Fjalla One'), local('FjallaOne-Regular'), url('/static/fjalla-one-latin-400.woff2') format('woff2'),
+             local('Fjalla One'), local('FjallaOne-Regular'), url('/static/fjalla-one-latin-400.woff') format('woff');
         font-weight: normal;
         font-style: normal;
     }
@@ -93,9 +89,7 @@
  </center>
   <script>
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker
-             .register('/sw.js')
-             .then(function() { console.log("Service Worker Registered"); });
+    navigator.serviceWorker.register('/sw.js');
   }
   </script>
 </body>
