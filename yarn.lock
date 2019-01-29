@@ -2,6 +2,6 @@
 # yarn lockfile v1
 
 
-typeface-fjalla-one@^0.0.54:
+typeface-fjalla-one@0.0.54:
   version "0.0.54"
   resolved "https://registry.yarnpkg.com/typeface-fjalla-one/-/typeface-fjalla-one-0.0.54.tgz#2791892d9c770c7deb488cc49ff98b218053ac0c"
