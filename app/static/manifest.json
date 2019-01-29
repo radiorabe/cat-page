@@ -1,0 +1,16 @@
+{
+  "short_name": "Intranet",
+  "name": "RaBe Intranet",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/static/funny-pictures-cat-sound-studio.jpg",
+      "type": "image/jpeg",
+      "sizes": "350x339"
+    }
+  ],
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#7ff0eb"
+}

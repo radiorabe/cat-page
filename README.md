@@ -16,7 +16,7 @@ Overengineered intranet landing page for [Radio Bern RaBe](https://www.rabe.ch).
 
 ### Configuration
 
-See `python app/server.js` for usage message and configuration info.
+See `python app/server.js --help` for usage message and configuration info.
 
 ### Docker
 

@@ -116,6 +116,10 @@ def create_app(config, with_static=True):
         app.wsgi_app = SharedDataMiddleware(
             app.wsgi_app, {"/static": os.path.join(os.path.dirname(__file__), "static")}
         )
+        app.wsgi_app = SharedDataMiddleware(
+            app.wsgi_app,
+            {"/sw.js": os.path.join(os.path.dirname(__file__), "static/sw.js")},
+        )
     return app
 
 

@@ -1,6 +1,11 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
 <head>
     <title>{{ title }}</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=2">
+    <meta name="theme-color" content="#7ff0eb">
+    <meta name="Description" content="RaBe Intranet Landing Page">
+    <link rel="manifest" href="/static/manifest.json">
     <style>
     @font-face {
         font-family: 'Fjalla One';
@@ -16,7 +21,7 @@
     body  {
         background: url("{{ background_url }}") no-repeat center center fixed;
         background-size: cover;
-        background-color: #ffffff;
+        background-color: #7ff0eb;
     }
     h1,
     h2,
@@ -45,7 +50,6 @@
     }
     body > center > img,
     body > center > div {
-        margin-top: 10%;
         background: white;
     	box-shadow: 0px 0px 0px 0px #333;
 	padding: 10px;
@@ -53,13 +57,28 @@
         border-radius: 5px;
     }
     body > center > img {
+        margin-top: 25px;
         width: 350px;
         height: 339px;
     }
     body > center > div {
+        margin-top: 10%;
         width: 50%;
         display: grid;
         grid-template-columns: 50% 50%;
+    }
+    @media (max-width: 900px) {
+        body > center > div {
+            width: 350px;
+            grid-template-columns: 100%;
+        }
+    }
+    @media (max-width: 470px) {
+        body > center > img,
+        body > center > div {
+            width: 90%;
+            height: auto;
+        }
     }
     </style>
 </head>
@@ -72,5 +91,12 @@
   </div>
   <img src="/static/funny-pictures-cat-sound-studio.jpg" alt="cat standing on a mixing desk with text overlay 'All your Bass are belong to me.'" align="center"/>
  </center>
+  <script>
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('/sw.js')
+             .then(function() { console.log("Service Worker Registered"); });
+  }
+  </script>
 </body>
 </html>
