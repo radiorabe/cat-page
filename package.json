@@ -1,6 +1,6 @@
 {
   "name": "catpage",
   "dependencies": {
-    "typeface-fjalla-one": "^0.0.54"
+    "typeface-fjalla-one": "0.0.54"
   }
 }
