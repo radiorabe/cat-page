@@ -3,3 +3,4 @@
 __pycache__
 /cov/
 /.coverage
+/node_modules/

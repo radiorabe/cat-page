@@ -5,7 +5,7 @@ self.addEventListener('install', function(e) {
      return cache.addAll([
        '/',
        '/static/funny-pictures-cat-sound-studio.jpg',
-       '/static/fjalla-one-latin-400.woff2'
+       '/static/fjalla-one-latin-400.woff2',
      ]);
    })
  );

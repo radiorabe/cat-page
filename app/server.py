@@ -4,6 +4,7 @@ from os.path import basename, expanduser
 
 from configargparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader
+from werkzeug.contrib.cache import SimpleCache
 from werkzeug.exceptions import HTTPException
 from werkzeug.routing import Map, Rule
 from werkzeug.wrappers import Request, Response
@@ -39,7 +40,15 @@ def config(parse=True):
     parser.add_argument("--address", env_var="PAGE_ADDRESS", default="0.0.0.0")
     parser.add_argument("--port", env_var="PAGE_PORT", default=5000)
     parser.add_argument("--thread-pool", env_var="PAGE_THREADPOOL", default=30)
-    parser.add_argument("--dev", env_var="PAGE_DEVSERVER", default=False)
+
+    def add_bool_arg(parser, name, default=False):
+        group = parser.add_mutually_exclusive_group(required=False)
+        group.add_argument("--" + name, dest=name, action="store_true")
+        group.add_argument("--no-" + name, dest=name, action="store_false")
+        parser.set_defaults(**{name: default})
+
+    add_bool_arg(parser, "static", default=True)
+    add_bool_arg(parser, "dev")
 
     if parse:  # pragma: no cover
         args = parser.parse_args()
@@ -70,16 +79,22 @@ def config(parse=True):
 class Server(object):
     """Main server servers static assets and renderds main page with links."""
 
+    DEFAULT_CACHE_TIMEOUT = 60 * 60 * 24 * 30
+
     def __init__(self, config):
         self.page_title = config.title
         self.page_background_image = config.background_image
         self.links = config.links
 
+        self.cache = SimpleCache()
+
         template_path = os.path.join(os.path.dirname(__file__), "templates")
         self.jinja_env = Environment(
             loader=FileSystemLoader(template_path), autoescape=True
         )
-        self.url_map = Map([Rule("/", endpoint="site")])
+        self.url_map = Map(
+            [Rule("/", endpoint="site"), Rule("/sw.js", endpoint="service_worker")]
+        )
 
     def dispatch_request(self, request):
         adapter = self.url_map.bind_to_environ(request.environ)
@@ -90,11 +105,19 @@ class Server(object):
             return e
 
     def on_site(self, request):
+        """Return main / page."""
         return self.render_template(
             "index.html",
             title=self.page_title,
             background_url=self.page_background_image,
             links=self.links,
+        )
+
+    def on_service_worker(self, request):
+        return self.render_template(
+            "sw.js",
+            mimetype="application/javascript",
+            background_url=self.page_background_image,
         )
 
     def wsgi_app(self, environ, start_response):
@@ -105,20 +128,22 @@ class Server(object):
     def __call__(self, environ, start_response):
         return self.wsgi_app(environ, start_response)
 
-    def render_template(self, template_name, **context):
-        t = self.jinja_env.get_template(template_name)
-        return Response(t.render(context), mimetype="text/html")
+    def render_template(self, template_name, mimetype="text/html", **context):
+        """Reder template to cache and keep in cache forver."""
+        if not self.cache.has(template_name):
+            t = self.jinja_env.get_template(template_name)
+            self.cache.set(template_name, t.render(context), timeout=0)
+
+        return Response(self.cache.get(template_name), mimetype=mimetype)
 
 
-def create_app(config, with_static=True):
+def create_app(config):
     app = Server(config)
-    if with_static:
-        app.wsgi_app = SharedDataMiddleware(
-            app.wsgi_app, {"/static": os.path.join(os.path.dirname(__file__), "static")}
-        )
+    if config.static:
         app.wsgi_app = SharedDataMiddleware(
             app.wsgi_app,
-            {"/sw.js": os.path.join(os.path.dirname(__file__), "static/sw.js")},
+            {"/static": os.path.join(os.path.dirname(__file__), "static")},
+            cache_timeout=Server.DEFAULT_CACHE_TIMEOUT,
         )
     return app
 
