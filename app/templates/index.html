@@ -46,7 +46,7 @@
 	color: black;
     }
     body > center > img,
-    body > center > div {
+    body > center > nav {
         background: white;
     	box-shadow: 0px 0px 0px 0px #333;
 	padding: 10px;
@@ -58,21 +58,21 @@
         width: 350px;
         height: 339px;
     }
-    body > center > div {
+    body > center > nav {
         margin-top: 10%;
         width: 50%;
         display: grid;
         grid-template-columns: 50% 50%;
     }
     @media (max-width: 900px) {
-        body > center > div {
+        body > center > nav {
             width: 350px;
             grid-template-columns: 100%;
         }
     }
     @media (max-width: 470px) {
         body > center > img,
-        body > center > div {
+        body > center > nav {
             width: 90%;
             height: auto;
         }
@@ -81,11 +81,11 @@
 </head>
 <body>
  <center>
-  <div>
+  <nav>
     {% for link in links %}
     <h1><a href="{{ link.target }}">{{ link.name }}</a></h1> 
     {% endfor %}
-  </div>
+  </nav>
   <img src="/static/funny-pictures-cat-sound-studio.jpg" alt="cat standing on a mixing desk with text overlay 'All your Bass are belong to me.'" align="center"/>
  </center>
   <script>
