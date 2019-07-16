@@ -2,13 +2,13 @@ import logging
 import os
 from os.path import basename, expanduser
 
+from cachelib.simple import SimpleCache
 from configargparse import ArgumentParser
 from jinja2 import Environment, FileSystemLoader
-from werkzeug.contrib.cache import SimpleCache
 from werkzeug.exceptions import HTTPException
+from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
 from werkzeug.wrappers import Request, Response
-from werkzeug.wsgi import SharedDataMiddleware
 
 logger = logging.getLogger("catpage")
 
