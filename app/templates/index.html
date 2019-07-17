@@ -89,6 +89,7 @@
   <img src="/static/funny-pictures-cat-sound-studio.jpg" alt="cat standing on a mixing desk with text overlay 'All your Bass are belong to me.'" align="center"/>
  </center>
   <script>
+  const __version__ = "{{ version }}";
   if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');
   }
@@ -96,6 +97,9 @@
     fetch('/api').then(response => {
       response.json().then(json => {
         document.getElementById("links").innerHTML = `${json.links.map(link => `<h1><a href="${link.target}">${link.name}</a></h1>`).join('')}`;
+        if (json.version !== __version__) {
+          window.caches.delete("catpage");
+        }
       });
     });
   })

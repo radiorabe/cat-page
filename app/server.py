@@ -118,6 +118,7 @@ class Server(object):
             title=self.page_title,
             background_url=self.page_background_image,
             links=self.links,
+            version=__version__,
         )
 
     def on_service_worker(self, request):
@@ -129,7 +130,10 @@ class Server(object):
 
     def on_api(self, request):
         """Return links as JSON request."""
-        return Response(json.dumps({"links": self.links}), mimetype="application/json")
+        return Response(
+            json.dumps({"version": __version__, "links": self.links}),
+            mimetype="application/json",
+        )
 
     def wsgi_app(self, environ, start_response):
         request = Request(environ)
