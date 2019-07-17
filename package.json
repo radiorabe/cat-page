@@ -2,5 +2,10 @@
   "name": "catpage",
   "dependencies": {
     "typeface-fjalla-one": "0.0.72"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   }
 }
