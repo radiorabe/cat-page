@@ -11,6 +11,8 @@ from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
 from werkzeug.wrappers import Request, Response
 
+__version__ = "0.0.0"
+
 logger = logging.getLogger("catpage")
 
 
@@ -138,7 +140,7 @@ class Server(object):
         return self.wsgi_app(environ, start_response)
 
     def render_template(self, template_name, mimetype="text/html", **context):
-        """Reder template to cache and keep in cache forver."""
+        """Render template to cache and keep in cache forver."""
         if not self.cache.has(template_name):
             t = self.jinja_env.get_template(template_name)
             self.cache.set(template_name, t.render(context), timeout=0)
@@ -186,6 +188,7 @@ def run_webserver(app, config):  # pragma: no cover
 
 
 if __name__ == "__main__":  # pragma: no cover
+    logger.info("Starting cat-page server version {0}".format(__version__))
     config = config()
     app = create_app(config)
     if config.dev:
