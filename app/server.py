@@ -1,3 +1,4 @@
+import json
 import logging
 import os
 from os.path import basename, expanduser
@@ -93,7 +94,11 @@ class Server(object):
             loader=FileSystemLoader(template_path), autoescape=True
         )
         self.url_map = Map(
-            [Rule("/", endpoint="site"), Rule("/sw.js", endpoint="service_worker")]
+            [
+                Rule("/", endpoint="site"),
+                Rule("/sw.js", endpoint="service_worker"),
+                Rule("/api", endpoint="api"),
+            ]
         )
 
     def dispatch_request(self, request):
@@ -119,6 +124,10 @@ class Server(object):
             mimetype="application/javascript",
             background_url=self.page_background_image,
         )
+
+    def on_api(self, request):
+        """Return links as JSON request."""
+        return Response(json.dumps({"links": self.links}), mimetype="application/json")
 
     def wsgi_app(self, environ, start_response):
         request = Request(environ)

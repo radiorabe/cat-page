@@ -81,7 +81,7 @@
 </head>
 <body>
  <center>
-  <nav>
+  <nav id="links">
     {% for link in links %}
     <h1><a href="{{ link.target }}">{{ link.name }}</a></h1> 
     {% endfor %}
@@ -92,6 +92,13 @@
   if('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js');
   }
+  document.addEventListener("DOMContentLoaded",function(){
+    fetch('/api').then(response => {
+      response.json().then(json => {
+        document.getElementById("links").innerHTML = `${json.links.map(link => `<h1><a href="${link.target}">${link.name}</a></h1>`).join('')}`;
+      });
+    });
+  })
   </script>
 </body>
 </html>
