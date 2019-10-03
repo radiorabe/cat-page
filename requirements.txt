@@ -1,5 +1,5 @@
 Werkzeug==0.16.0
 Jinja2==2.10.1
 configargparse==0.14.0
-CherryPy==18.2.0
+CherryPy==18.3.0
 cachelib==0.1
