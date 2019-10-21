@@ -6,7 +6,7 @@ COPY package.json yarn.lock /app/
 
 RUN yarn install
 
-FROM python:3.7-alpine
+FROM python:3.8-alpine
 
 WORKDIR /app
 
