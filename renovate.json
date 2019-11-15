@@ -6,5 +6,20 @@
     "fileMatch": [
       "requirements.*txt$"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "extends": "monorepo:semantic-release",
+      "groupName": "semantic-release monorepo"
+    },
+    {
+      "packagePatterns": [
+        "*"
+      ],
+      "minor": {
+        "groupName": "all non-major dependencies",
+        "groupSlug": "all-minor-patch"
+      }
+    }
+  ]
 }
