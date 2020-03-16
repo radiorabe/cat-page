@@ -1,5 +1,5 @@
 Werkzeug==1.0.0
 Jinja2==2.11.1
-configargparse==1.0
+configargparse==1.1
 CherryPy==18.5.0
 cachelib==0.1
