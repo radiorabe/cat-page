@@ -11,7 +11,7 @@ from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
 from werkzeug.wrappers import Request, Response
 
-__version__ = "0.8.0"
+__version__ = "0.9.0"
 
 logger = logging.getLogger("catpage")
 
