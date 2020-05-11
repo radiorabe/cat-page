@@ -68,9 +68,9 @@ def config(parse=True):
 
     if args.links:
 
-        def link_split(l):
-            s = l.split(";")
-            return {"name": s[0], "target": s[1]}
+        def link_split(link):
+            split = link.split(";")
+            return {"name": split[0], "target": split[1]}
 
         args.links = list(map(link_split, args.links))
     if args.port:
