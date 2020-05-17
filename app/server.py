@@ -9,6 +9,7 @@ from jinja2 import Environment, FileSystemLoader
 from werkzeug.exceptions import HTTPException
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
+from werkzeug.utils import redirect
 from werkzeug.wrappers import Request, Response
 
 __version__ = "0.7.0"
@@ -100,6 +101,9 @@ class Server(object):
                 Rule("/", endpoint="site"),
                 Rule("/sw.js", endpoint="service_worker"),
                 Rule("/api", endpoint="api"),
+                Rule("/.env", endpoint="hack"),
+                Rule("/wp-login.php", endpoint="hack"),
+                Rule("/wp-admin", endpoint="hack"),
             ]
         )
 
@@ -134,6 +138,10 @@ class Server(object):
             json.dumps({"version": __version__, "links": self.links}),
             mimetype="application/json",
         )
+
+    def on_hack(self, request):
+        """Rickroll people trying to break in."""
+        return redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def wsgi_app(self, environ, start_response):
         request = Request(environ)
