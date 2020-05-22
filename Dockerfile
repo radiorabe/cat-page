@@ -15,7 +15,13 @@ ARG DEV=false
 COPY requirements*.txt /app/
 
 RUN [[ "x${DEV}" != "xfalse" ]] \
- && pip install -r requirements-dev.txt \
+ && ( \
+      apk --no-cache add \
+        build-base \
+        libffi-dev \
+        openssl-dev \
+   && pip install -r requirements-dev.txt \
+ ) \
  || pip install -r requirements.txt
 
 COPY . /app
