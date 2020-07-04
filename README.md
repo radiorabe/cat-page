@@ -1,6 +1,6 @@
 # RaBe Cat Landing Page
 
-[![Build Status](https://travis-ci.com/radiorabe/cat-page.svg?branch=master)](https://travis-ci.com/radiorabe/cat-page) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+![Build Status](https://github.com/radiorabe/cat-page/workflows/Test%20and%20Release/badge.svg) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 
 Overengineered intranet landing page for [Radio Bern RaBe](https://www.rabe.ch).
 
@@ -73,24 +73,6 @@ npm install -g commitizen cz-conventional-changelog
 Once your contribution is ready you can use the GitHub interface to create a pull request. Please try to keep
 your individual contribution self contained in a single squashed commit. This helps so that the maintainers
 can just hit "Squash and merge" instead of "Rebase and merge".
-
-### Releasing an updated version
-
-Anyone managing a release can run the semantic release tooling and publish a release. You should always remember
-to update your master branch and cleanup you local working copy.
-
-```bash
-git checkout master
-git pull origin master
-git stash
-```
-
-You can now run `semantic-release`.
-
-```bash
-semantic-release changelog
-semantic-release version
-```
 
 ## License
 This application is free software: you can redistribute it and/or modify it under
