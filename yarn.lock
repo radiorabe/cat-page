@@ -2,6 +2,7 @@
 # yarn lockfile v1
 
 
-typeface-fjalla-one@0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-fjalla-one/-/typeface-fjalla-one-0.0.72.tgz#fdd62fd4c546bb18ca443ab2308123d9f6140359"
+typeface-fjalla-one@1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-fjalla-one/-/typeface-fjalla-one-1.1.13.tgz#312d1b86c0ca1ee29f4b69ec6312ff81fd9e7bd9"
+  integrity sha512-cTe0C6an5mcWSqcXgnzRFZtBUrb1enRLuO5gX4qCj/4UUVeaspKxuLu2/w6zvTc63T0Yk0WjJrz/wtw+BYYELw==
