@@ -1,4 +1,4 @@
-FROM node:8.17-alpine as jsdep
+FROM node:16.1-alpine as jsdep
 
 WORKDIR /app
 
