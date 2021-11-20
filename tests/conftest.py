@@ -2,7 +2,7 @@ from html.parser import HTMLParser
 
 import pytest
 from werkzeug.test import Client
-from werkzeug.wrappers import BaseResponse
+from werkzeug.wrappers import Response
 
 from app import server
 
@@ -35,4 +35,4 @@ def cat_parser(cat_path=CAT_PATH):
 
 @pytest.fixture
 def client():
-    yield Client(server.create_app(server.config(parse=False)), BaseResponse)
+    yield Client(server.create_app(server.config(parse=False)), Response)
