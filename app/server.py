@@ -80,7 +80,7 @@ def config(parse=True):
     return args
 
 
-class Server(object):
+class Server:
     """Main server servers static assets and renderds main page with links."""
 
     DEFAULT_CACHE_TIMEOUT = 60 * 60 * 24 * 30
@@ -200,7 +200,7 @@ def run_webserver(app, config):  # pragma: no cover
 
 
 if __name__ == "__main__":  # pragma: no cover
-    logger.info("Starting cat-page server version {0}".format(__version__))
+    logger.info(f"Starting cat-page server version {__version__}")
     config = config()
     app = create_app(config)
     if config.dev:
