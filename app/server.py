@@ -208,5 +208,6 @@ def main():  # pragma: no cover
     else:
         run_webserver(app, cfg)
 
+
 if __name__ == "__main__":  # pragma: no cover
     main()
