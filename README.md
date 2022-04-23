@@ -21,10 +21,10 @@ See `python app/server.py --help` for usage message and configuration info.
 ### Docker
 
 ```bash
-docker run --rm -ti -p 5000:5000 radiorabe/catpage
+docker run --rm -ti -p 8080:8080 radiorabe/catpage
 ```
 
-Connect to [localhost:5000](http://localhost:5000).
+Connect to [localhost:8080](http://localhost:8080).
 
 ### Docker-compose
 
