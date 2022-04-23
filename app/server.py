@@ -42,7 +42,7 @@ def config(parse=True):
     )
     parser.add_argument("--links", env_var="PAGE_LINKS", action="append", default=[])
     parser.add_argument("--address", env_var="PAGE_ADDRESS", default="0.0.0.0")
-    parser.add_argument("--port", env_var="PAGE_PORT", default=5000)
+    parser.add_argument("--port", env_var="PAGE_PORT", default=8080)
     parser.add_argument("--thread-pool", env_var="PAGE_THREADPOOL", default=30)
 
     def add_bool_arg(parser, name, default=False):
@@ -199,11 +199,15 @@ def run_webserver(app, config):  # pragma: no cover
     cherrypy.engine.block()
 
 
-if __name__ == "__main__":  # pragma: no cover
+def main():  # pragma: no cover
     logger.info(f"Starting cat-page server version {__version__}")
-    config = config()
-    app = create_app(config)
-    if config.dev:
-        run_devserver(app, config)
+    cfg = config()
+    app = create_app(cfg)
+    if cfg.dev:
+        run_devserver(app, cfg)
     else:
-        run_webserver(app, config)
+        run_webserver(app, cfg)
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()
