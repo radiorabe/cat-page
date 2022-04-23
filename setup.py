@@ -21,7 +21,7 @@ setup(
     entry_points={"console_scripts": ["catpage=app.server:main"]},
     zip_safe=True,
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: GNU Affero General Public License v3",
     ],
 )
