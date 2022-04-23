@@ -18,3 +18,9 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+
+  # Maintain Docker images
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
