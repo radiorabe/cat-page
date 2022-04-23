@@ -16,4 +16,4 @@ RUN    python3 -mpip --no-cache-dir install /tmp/dist/*.whl \
 
 USER nobody
 
-CMD ["python", "app/server.py"]
+CMD ["catpage"]
