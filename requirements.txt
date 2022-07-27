@@ -1,4 +1,4 @@
-Werkzeug==2.1.2
+Werkzeug==2.2.0
 Jinja2==3.1.2
 configargparse==1.5.3
 CherryPy==18.8.0
