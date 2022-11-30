@@ -7,7 +7,7 @@ RUN    npm install \
     && python3 setup.py bdist_wheel
 
 
-FROM ghcr.io/radiorabe/python-minimal:0.5.0 AS app
+FROM ghcr.io/radiorabe/python-minimal:0.5.1 AS app
 
 COPY --from=build /opt/app-root/src/dist/*.whl /tmp/dist/
 
