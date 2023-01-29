@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "cat-page"
+version = "0.0.0" # 0.0.0 placeholder is replaced on release
+description = "RaBe Cat Landing Page"
+repository = "https://github.com/radiorabe/cat-page"
+authors = ["RaBe IT-Reaktion <it@rabe.ch>"]
+license = "AGPL-3"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Topic :: Multimedia :: Sound/Audio :: Conversion",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+readme = "README.md"
+packages = [
+    { include = "app"},
+]
+
+[tool.poetry.scripts]
+catpage = 'app.server:main'
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Werkzeug = "^2.2.2"
+Jinja2 = "^3.1.2"
+configargparse = "^1.5.3"
+CherryPy = "^18.8.0"
+cachelib = "^0.9.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.12.0"
+flake8 = "^6.0.0"
+flake8-debugger = "^4.1.2"
+flake8-docstrings = "^1.6.0"
+flake8-isort = "^5.0.3"
+flake8-string-format = "^0.3.0"
+flake8-tuple = "^0.4.1"
+isort = "^5.10.1"
+pydocstyle = "^6.1.1"
+pytest = "^7.2.0"
+pytest-cov = "^4.0.0"
+
+[tool.isort]
+line_length = 120
+profile = "black"
+
+[tool.pytest.ini_options]
+minversion = "7.2"
+addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=cridlib --cov-fail-under=100 --pylint --mypy"
+filterwarnings = ["ignore::pytest.PytestRemovedIn8Warning:pytest_pylint"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
