@@ -44,7 +44,9 @@ You can run our tests with `pytest`. Please keep in mind that we expect to keep 
 100% and that this is enforced by CI.
 
 ```bash
-pytest --cov=app
+pipx install poetry
+poetry install
+poetry run pytest
 ```
 
 ### Formating code using a pre-commit hook
@@ -54,7 +56,6 @@ this on your dev env to ensure that all the code is properly formatted and your 
 
 ```bash
 pip install pre-commit
-pip install -r requirements-dev.txt -U
 pre-commit install
 ```
 
