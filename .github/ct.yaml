@@ -1,0 +1,3 @@
+target-branch: main
+charts:
+  - charts/catpage

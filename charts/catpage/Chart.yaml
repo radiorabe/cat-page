@@ -1,0 +1,6 @@
+apiVersion: v2
+name: catpage
+description: catpage on k8s
+type: application
+version: 0.0.0
+appVersion: "latest"

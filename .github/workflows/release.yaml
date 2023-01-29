@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Prepare additional Metadata
-        id: addtional_meta
+        id: additional_meta
         run: |
           echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
 
@@ -40,7 +40,7 @@ jobs:
             vcs-ref=${{ github.sha }}
             revision=${{ github.sha }}
             release=${{ github.sha }}
-            build-date=${{ steps.addtional_meta.outputs.created }}
+            build-date=${{ steps.additional_meta.outputs.created }}
             io.k8s.display-name=Cat Page
             io.k8s.description=${{ github.event.repository.description }}
             io.openshift.tags=minimal rhel8 rabe s2i python python39 catpage
@@ -72,3 +72,23 @@ jobs:
           labels: |
             ${{ steps.meta.outputs.labels }}
             version=${{ steps.meta.outputs.version }}
+
+      - name: Prepare Chart Metadata
+        id: chartmeta
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+
+      - name: Replace version
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: mikefarah/yq@v4.30.6
+        with:
+          cmd: yq eval '(.appVersion = "${{ steps.chartmeta.outputs.version }}") | (.version = "${{ steps.chartmeta.outputs.version }}")' -i charts/catpage/Chart.yaml
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.5.0
+        with:
+          config: .github/cr.yaml
+          charts_repo_url: https://radiorabe.github.io/helm-charts
+        env:
+          CR_TOKEN: "${{ secrets.RABE_ITREAKTION_GITHUB_TOKEN }}"

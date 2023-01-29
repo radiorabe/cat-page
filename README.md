@@ -18,20 +18,30 @@ Overengineered intranet landing page for [Radio Bern RaBe](https://www.rabe.ch).
 
 See `python app/server.py --help` for usage message and configuration info.
 
-### Docker
+### Container
 
 ```bash
-docker run --rm -ti -p 8080:8080 radiorabe/catpage
+# using docker
+docker run --rm -ti -p 8080:8080 ghcr.io/radiorabe/catpage
+# or podman
+podman run --rm -ti -p 8080:8080 ghcr.io/radiorabe/catpage
 ```
 
 Connect to [localhost:8080](http://localhost:8080).
 
-### Docker-compose
+### Podman-compose
 
 ```bash
 cp env.example .env
 $EDITOR .env
-docker-compose up -d
+podman-compose up -d
+```
+
+### Kubernetes
+
+```bash
+helm repo add rabe https://radiorabe.github.io/helm-charts
+helm install rabe/catpage
 ```
 
 ## Contributing
