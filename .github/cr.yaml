@@ -1,2 +1,4 @@
 owner: radiorabe
 git-repo: helm-charts
+make-release-latest: false
+charts-repo-url: https://radiorabe.github.io/helm-charts

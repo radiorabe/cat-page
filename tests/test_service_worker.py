@@ -1,4 +1,4 @@
-"""Test is we have a service worker."""
+"""Test if we have a service worker."""
 
 
 def test_worker(client):
