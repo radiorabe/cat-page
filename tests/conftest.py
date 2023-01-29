@@ -1,3 +1,4 @@
+"""Configure test environment."""
 from html.parser import HTMLParser
 
 import pytest
@@ -12,27 +13,32 @@ CAT_PATH = "/static/funny-pictures-cat-sound-studio.jpg"
 class CatImgLinkHTMLParser(HTMLParser):
     """Parser to aid asserting the correct minima of cats on the page."""
 
-    catCount = 0
+    def __init__(self, cat_path):
+        self.cat_count = 0
+        self.cat_path = cat_path
+        super().__init__()
 
     def handle_starttag(self, tag, attrs):
         if tag == "img":
             for attr in attrs:
                 if attr[0] == "src" and attr[1] == self.cat_path:
-                    self.catCount += 1
+                    self.cat_count += 1
 
 
-@pytest.fixture
-def cat_path():
+@pytest.fixture(name="cat_path")
+def cat_path_fixture():
+    """Return path to cat."""
     return CAT_PATH
 
 
 @pytest.fixture
 def cat_parser(cat_path=CAT_PATH):
-    cilhp = CatImgLinkHTMLParser()
-    cilhp.cat_path = cat_path
+    """Return parser stub."""
+    cilhp = CatImgLinkHTMLParser(cat_path=cat_path)
     yield cilhp
 
 
 @pytest.fixture
 def client():
-    yield Client(server.create_app(server.config(parse=False)), Response)
+    """Server for testing."""
+    yield Client(server.create_app(server.get_config(parse=False)), Response)
