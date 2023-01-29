@@ -38,14 +38,25 @@ docker-compose up -d
 
 Contributions are welcome. Please keep in mind that everything here is completely overengineered.
 
+## Development
+
+### Setup
+
+```bash
+python -mvenv venv
+. ./venv/bin/activate
+
+pipx install poetry
+
+poetry install
+```
+
 ### Running tests
 
 You can run our tests with `pytest`. Please keep in mind that we expect to keep the coverage at
 100% and that this is enforced by CI.
 
 ```bash
-pipx install poetry
-poetry install
 poetry run pytest
 ```
 
