@@ -10,7 +10,7 @@ from app import server
 CAT_PATH = "/static/funny-pictures-cat-sound-studio.jpg"
 
 
-class CatImgLinkHTMLParser(HTMLParser):
+class CatImgLinkHTMLParser(HTMLParser):  # pylint: disable=abstract-method
     """Parser to aid asserting the correct minima of cats on the page."""
 
     def __init__(self, cat_path):
