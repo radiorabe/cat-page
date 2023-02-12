@@ -1,4 +1,4 @@
-FROM ghcr.io/radiorabe/s2i-python:2.0.0-alpha.2 AS build
+FROM ghcr.io/radiorabe/s2i-python:2.0.0-alpha.4 AS build
 
 COPY --chown=1001:0 ./ /opt/app-root/src/
 
@@ -8,7 +8,7 @@ RUN    npm install \
 RUN    python3 -mbuild
 
 
-FROM ghcr.io/radiorabe/python-minimal:2.0.0-alpha.4 AS app
+FROM ghcr.io/radiorabe/python-minimal:2.0.0-alpha.5 AS app
 
 COPY --from=build /opt/app-root/src/dist/*.whl /tmp/dist/
 
