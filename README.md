@@ -40,8 +40,7 @@ podman-compose up -d
 ### Kubernetes
 
 ```bash
-helm repo add rabe https://radiorabe.github.io/helm-charts
-helm install rabe/catpage
+helm install oci://ghcr.io/radiorabe/helm/catpage
 ```
 
 ## Contributing

@@ -55,4 +55,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
          
       - name: Push Chart
-        run: helm push dist/*.tgz oci://ghcr.io/radiorabe
+        run: helm push dist/*.tgz oci://ghcr.io/radiorabe/helm
