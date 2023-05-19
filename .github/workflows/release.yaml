@@ -37,8 +37,7 @@ jobs:
 
       - name: Prepare Chart Metadata
         id: chartmeta
-        run: |
-          echo ::set-output name=version::${GITHUB_REF#refs/tags/}
+        run: echo version=${GITHUB_REF#refs/tags/v} >> $GITHUB_OUTPUT
 
       - name: Set up Helm
         uses: azure/setup-helm@v3.5
@@ -56,4 +55,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
          
       - name: Push Chart
-        run: helm push dist/*.tgz oci://ghcr.io/radiorabe/catpage
+        run: helm push dist/*.tgz oci://ghcr.io/radiorabe
