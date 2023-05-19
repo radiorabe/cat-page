@@ -1,4 +1,7 @@
 owner: radiorabe
 git-repo: helm-charts
 make-release-latest: false
+generate-release-notes: true
 charts-repo-url: https://radiorabe.github.io/helm-charts
+package-path: .cr-release-packages
+push: true
