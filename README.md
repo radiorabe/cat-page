@@ -40,7 +40,7 @@ podman-compose up -d
 ### Kubernetes
 
 ```bash
-helm install oci://ghcr.io/radiorabe/helm/catpage
+helm install catpage oci://ghcr.io/radiorabe/helm/catpage --version x.y.z
 ```
 
 ## Contributing
