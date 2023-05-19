@@ -8,7 +8,7 @@ on:
 
 jobs:
   release-container:
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@main
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.9.1
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
@@ -27,7 +27,7 @@ jobs:
       repository-projects: none
       security-events: none
       statuses: none
-      id-token: non
+      id-token: none
     steps:
       - name: Checkout
         uses: actions/checkout@v3
