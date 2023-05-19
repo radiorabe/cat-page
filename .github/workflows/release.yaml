@@ -16,6 +16,8 @@ jobs:
       tags: 'minimal rhel9 rabe s2i python python311 catpage'
   helm-chart:
     runs-on: ubuntu-latest
+    needs:
+      - release-container
     permissions:
       actions: none
       checks: none
