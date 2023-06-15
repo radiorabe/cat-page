@@ -8,7 +8,7 @@ on:
 
 jobs:
   release-container:
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.9.3
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.13.1
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
@@ -53,6 +53,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-         
+
       - name: Push Chart
         run: helm push dist/*.tgz oci://ghcr.io/radiorabe/helm
