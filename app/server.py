@@ -1,14 +1,17 @@
+"""Server that hosts our langing page thing with a cat."""
 import json
 import logging
 import os
 from os.path import basename, expanduser
 
+import cherrypy  # type: ignore
 from cachelib.simple import SimpleCache
-from configargparse import ArgumentParser
+from configargparse import ArgumentParser  # type: ignore
 from jinja2 import Environment, FileSystemLoader
 from werkzeug.exceptions import HTTPException
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from werkzeug.routing import Map, Rule
+from werkzeug.serving import run_simple
 from werkzeug.utils import redirect
 from werkzeug.wrappers import Request, Response
 
@@ -17,7 +20,7 @@ __version__ = "0.7.0"
 logger = logging.getLogger("catpage")
 
 
-def config(parse=True):
+def get_config(parse=True):
     """Get ConfigargParse based configuration.
 
     The config file in /etc gets overriden by the one in $HOME which gets
@@ -108,14 +111,15 @@ class Server:
         )
 
     def dispatch_request(self, request):
+        """Dispatch requests to handlers."""
         adapter = self.url_map.bind_to_environ(request.environ)
         try:
-            endpoint, values = adapter.match()
+            endpoint, values = adapter.match()  # pylint: disable=unpacking-non-sequence
             return getattr(self, "on_" + endpoint)(request, **values)
-        except HTTPException as e:
-            return e
+        except HTTPException as ex:
+            return ex
 
-    def on_site(self, request):
+    def on_site(self, request):  # pylint: disable=unused-argument
         """Return main / page."""
         return self.render_template(
             "index.html",
@@ -125,25 +129,27 @@ class Server:
             version=__version__,
         )
 
-    def on_service_worker(self, request):
+    def on_service_worker(self, request):  # pylint: disable=unused-argument
+        """Return a service worker for SPA reasons."""
         return self.render_template(
             "sw.js",
             mimetype="application/javascript",
             background_url=self.page_background_image,
         )
 
-    def on_api(self, request):
+    def on_api(self, request):  # pylint: disable=unused-argument
         """Return links as JSON request."""
         return Response(
             json.dumps({"version": __version__, "links": self.links}),
             mimetype="application/json",
         )
 
-    def on_hack(self, request):
+    def on_hack(self, request):  # pylint: disable=unused-argument
         """Rickroll people trying to break in."""
         return redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def wsgi_app(self, environ, start_response):
+        """Return a wsgi app."""
         request = Request(environ)
         response = self.dispatch_request(request)
         return response(environ, start_response)
@@ -154,13 +160,14 @@ class Server:
     def render_template(self, template_name, mimetype="text/html", **context):
         """Render template to cache and keep in cache forver."""
         if not self.cache.has(template_name):
-            t = self.jinja_env.get_template(template_name)
-            self.cache.set(template_name, t.render(context), timeout=0)
+            tpl = self.jinja_env.get_template(template_name)
+            self.cache.set(template_name, tpl.render(context), timeout=0)
 
         return Response(self.cache.get(template_name), mimetype=mimetype)
 
 
 def create_app(config):
+    """Create the app server."""
     app = Server(config)
     if config.static:
         app.wsgi_app = SharedDataMiddleware(
@@ -172,22 +179,20 @@ def create_app(config):
 
 
 def run_devserver(app, config):  # pragma: no cover
-    from werkzeug.serving import run_simple
-
+    """Run a simple werkzeug devserver."""
     logger.info("Starting development server")
 
     run_simple(config.address, config.port, app, use_debugger=True, use_reloader=True)
 
 
 def run_webserver(app, config):  # pragma: no cover
-    import cherrypy
-
+    """Run the production cherrypy server."""
     logger.info("Starting production server")
 
     cherrypy.tree.graft(app, "/")
     cherrypy.server.unsubscribe()
 
-    server = cherrypy._cpserver.Server()
+    server = cherrypy._cpserver.Server()  # pylint: disable=protected-access
 
     server.socket_host = config.address
     server.socket_port = config.port
@@ -200,8 +205,9 @@ def run_webserver(app, config):  # pragma: no cover
 
 
 def main():  # pragma: no cover
-    logger.info(f"Starting cat-page server version {__version__}")
-    cfg = config()
+    """Start dev or prod server."""
+    logger.info("Starting cat-page server version %s", __version__)
+    cfg = get_config()
     app = create_app(cfg)
     if cfg.dev:
         run_devserver(app, cfg)

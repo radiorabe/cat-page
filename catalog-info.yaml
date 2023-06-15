@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: cat-page
+  title: Cat Page
+  description: |
+    Intranet landing page for RaBe
+  annotations:
+     github.com/project-slug: radiorabe/cat-page
+     backstage.io/techdocs-ref: dir:.
+spec:
+  type: website
+  owner: it-reaktion
+  lifecycle: production

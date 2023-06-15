@@ -2,7 +2,7 @@ version: '3.0'
 
 services:
   page:
-    image: radiorabe/catpage:latest
+    image: ghcr.io/radiorabe/catpage:latest
     build: .
     env_file:
       - .env
