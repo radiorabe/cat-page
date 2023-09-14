@@ -48,7 +48,7 @@ jobs:
         run: helm package --version ${{ steps.chartmeta.outputs.version }} --app-version ${{ steps.chartmeta.outputs.version }} --destination=dist charts/catpage
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
