@@ -8,7 +8,7 @@ RUN    npm install \
 RUN    python -mbuild
 
 
-FROM ghcr.io/radiorabe/python-minimal:2.0.4 AS app
+FROM ghcr.io/radiorabe/python-minimal:2.1.0 AS app
 
 COPY --from=build /opt/app-root/src/dist/*.whl /tmp/dist/
 
