@@ -12,3 +12,6 @@ spec:
   type: website
   owner: it-reaktion
   lifecycle: production
+  dependsOn:
+    - component:default/python-minimal
+    - component:default/s2i-python-minimal
