@@ -1,2 +1,2 @@
 vuln.json
-trivy-results.sarif
+trivy.*
