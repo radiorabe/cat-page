@@ -1,4 +1,5 @@
 """Test that cat is healthy."""
+
 from hashlib import sha256
 
 CAT_SHA256 = "85f77812c365c4cb02c1972fcbfa4c5b00a108bf12d6d34da5a84a8218a5219b"

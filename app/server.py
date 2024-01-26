@@ -1,4 +1,5 @@
 """Server that hosts our langing page thing with a cat."""
+
 import json
 import logging
 import os
