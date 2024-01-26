@@ -1,4 +1,5 @@
 """Test for proper XcQ."""
+
 import pytest
 
 
