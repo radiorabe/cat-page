@@ -59,13 +59,13 @@ uvloop = ["uvloop (>=0.15.2)"]
 
 [[package]]
 name = "cachelib"
-version = "0.10.2"
+version = "0.12.0"
 description = "A collection of cache libraries in the same API interface."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "cachelib-0.10.2-py3-none-any.whl", hash = "sha256:42d49f2fad9310dd946d7be73d46776bcd4d5fde4f49ad210cfdd447fbdfc346"},
-    {file = "cachelib-0.10.2.tar.gz", hash = "sha256:593faeee62a7c037d50fc835617a01b887503f972fb52b188ae7e50e9cb69740"},
+    {file = "cachelib-0.12.0-py3-none-any.whl", hash = "sha256:038f4d855afc3eb8caab10458f6eac55c328911f9055824c22c2f259ef9ed3a3"},
+    {file = "cachelib-0.12.0.tar.gz", hash = "sha256:8243029a028436fd23229113dee517c0700bb43a8a289ec5a963e4af9ca2b194"},
 ]
 
 [[package]]
@@ -976,4 +976,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "578818d14dff73b1b86550e34289deb56866ba9068a23a40ac6c4e22f68f97ac"
+content-hash = "cf42a94759a86055c90517ce96dd03a41cb52002d3b14b49e694447d12015cfa"
