@@ -8,7 +8,7 @@ on:
 
 jobs:
   release-container:
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.20.5
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.20.6
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
