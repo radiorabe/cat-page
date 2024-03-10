@@ -21,6 +21,8 @@ RUN    microdnf install -y \
     && microdnf clean all \
     && rm -rf /tmp/dist/
 
+ENV PAGE_ADDRESS=0.0.0.0
+
 USER nobody
 
 CMD ["catpage"]
