@@ -51,7 +51,7 @@ profile = "black"
 [tool.pytest.ini_options]
 minversion = "7.2"
 addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=app --cov-fail-under=100 --ruff --ignore docs/"
-filterwarnings = ["ignore::pytest.PytestRemovedIn8Warning:pytest_pylint", "ignore::DeprecationWarning:cherrypy", "ignore::DeprecationWarning:pylint", "ignore::DeprecationWarning:pkg_resources", "ignore::DeprecationWarning:pytest_pylint"]
+filterwarnings = ["ignore::DeprecationWarning:cherrypy", "ignore::DeprecationWarning:pylint", "ignore::DeprecationWarning:pkg_resources", "ignore::DeprecationWarning:pytest_pylint"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
