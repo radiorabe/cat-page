@@ -1,10 +1,8 @@
 repos:
-  - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.1
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.3.2'
     hooks:
-      - id: pyupgrade
-        args:
-          - --py311-plus
+      - id: ruff
   - repo: local
     hooks:
       - id: black
@@ -12,18 +10,8 @@ repos:
         language: system
         entry: black
         types: [python]
-      - id: isort
-        name: isort
-        language: system
-        entry: isort
-        types: [python]
-      - id: flake8
-        name: flake8
-        language: system
-        entry: flake8
-        types: [python]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: trailing-whitespace
         exclude: ^src/api/client.js$

@@ -32,14 +32,13 @@ def cat_path_fixture():
     return CAT_PATH
 
 
-@pytest.fixture
+@pytest.fixture()
 def cat_parser(cat_path=CAT_PATH):
     """Return parser stub."""
-    cilhp = CatImgLinkHTMLParser(cat_path=cat_path)
-    yield cilhp
+    return CatImgLinkHTMLParser(cat_path=cat_path)
 
 
-@pytest.fixture
+@pytest.fixture()
 def client():
     """Server for testing."""
-    yield Client(server.create_app(server.get_config(parse=False)), Response)
+    return Client(server.create_app(server.get_config(parse=False)), Response)
