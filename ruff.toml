@@ -24,10 +24,10 @@ select = [
 	"T10",     # flake8-debugger
 	"EM",      # flake8-errmsg
 	"EXE",     # flake8-executable
-        "FA",      # flake8-future-annotations
+	"FA",      # flake8-future-annotations
 	"ISC",     # flake8-implicit-str-concat
 	"ICN",     # flake8-import-conventions
-        "G",       # flake8-logging-format
+	"G",       # flake8-logging-format
 	"INP",     # flake8-no-pep420
 	"PIE",     # flake8-pie
 	"T20",     # flake8-print
@@ -38,7 +38,7 @@ select = [
 	"RET",     # flake8-return
 	"SLF",     # flake8-self
 	"SLOT",    # flake8-slots
-        "SIM",     # flake8-simplify
+	"SIM",     # flake8-simplify
 	"TID",     # flake8-tidy-imports
 	"TCH",     # flake8-type-checking
 	"INT",     # flake8-gettext
@@ -55,6 +55,8 @@ select = [
 ignore = [
 	"D203",    # we prefer blank-line-before-class (D211) for black compat
 	"D213",    # we prefer multi-line-summary-first-line (D212)
+	"COM812",  # ignore due to conflict with formatter
+	"ISC001",  # ignore due to conflict with formatter
 ]
 
 [lint.per-file-ignores]
@@ -62,8 +64,10 @@ ignore = [
 	"D",       # pydocstyle is optional for tests
 	"ANN",     # flake8-annotations are optional for tests
 	"S101",    # assert is allow in tests
+	"S105",    # tests may have hardcoded secrets
+	"S106",    # tests may have hardcoded passwords
 	"S108",    # /tmp is allowed in tests since it's expected to be mocked
-	"DTZ001",  # tests often run in UTC
+	"DTZ00",   # tests often run in UTC
 	"INP001",  # tests do not need a dunder init
 ]
 "**/__init__.py" = [
