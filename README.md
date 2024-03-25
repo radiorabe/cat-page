@@ -1,7 +1,5 @@
 # RaBe Cat Landing Page
 
-![Build Status](https://github.com/radiorabe/cat-page/workflows/Test%20and%20Release/badge.svg) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/) [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-
 Overengineered intranet landing page for [Radio Bern RaBe](https://www.rabe.ch).
 
 ![Screenshot of page.](docs/screenshot.png)
