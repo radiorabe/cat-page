@@ -5,9 +5,9 @@ on:
 
 jobs:
   pre-commit:
-    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.20.8
+    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.21.0
   python-poetry:
-    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.20.8
+    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.21.0
   helm-chart:
     name: Test Helm Chart
     runs-on: ubuntu-latest
