@@ -43,13 +43,13 @@ files = [
 
 [[package]]
 name = "cachelib"
-version = "0.12.0"
+version = "0.13.0"
 description = "A collection of cache libraries in the same API interface."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "cachelib-0.12.0-py3-none-any.whl", hash = "sha256:038f4d855afc3eb8caab10458f6eac55c328911f9055824c22c2f259ef9ed3a3"},
-    {file = "cachelib-0.12.0.tar.gz", hash = "sha256:8243029a028436fd23229113dee517c0700bb43a8a289ec5a963e4af9ca2b194"},
+    {file = "cachelib-0.13.0-py3-none-any.whl", hash = "sha256:8c8019e53b6302967d4e8329a504acf75e7bc46130291d30188a6e4e58162516"},
+    {file = "cachelib-0.13.0.tar.gz", hash = "sha256:209d8996e3c57595bee274ff97116d1d73c4980b2fd9a34c7846cd07fd2e1a48"},
 ]
 
 [[package]]
@@ -818,4 +818,4 @@ test = ["zope.testing"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "99fd54c445bc47fbbe0a7ad44d428f9492c1a32d7332edc664ac87b17a8a03e4"
+content-hash = "ea74e30f62ce0aca20ec978532f39fc581e12e694a86e46261cbef7f9a40f3c6"
