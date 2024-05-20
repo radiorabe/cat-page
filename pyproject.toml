@@ -23,7 +23,7 @@ catpage = 'app.server:main'
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Werkzeug = "^3.0.2"
+Werkzeug = "^3.0.3"
 Jinja2 = "^3.1.4"
 configargparse = "^1.7"
 CherryPy = "^18.9.0"
