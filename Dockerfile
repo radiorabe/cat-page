@@ -13,11 +13,11 @@ FROM ghcr.io/radiorabe/python-minimal:3.0.0 AS app
 COPY --from=build /opt/app-root/src/dist/*.whl /tmp/dist/
 
 RUN    microdnf install -y \
-         python3.11-pip \
+         python3.12-pip \
     && python -mpip --no-cache-dir install /tmp/dist/*.whl \
     && microdnf remove -y \
-         python3.11-pip \
-         python3.11-setuptools \
+         python3.12-pip \
+         python3.12-setuptools \
     && microdnf clean all \
     && rm -rf /tmp/dist/
 
