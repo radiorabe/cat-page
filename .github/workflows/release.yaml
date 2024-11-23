@@ -9,14 +9,14 @@ on:
 
 jobs:
   release-container:
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.22.4
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.24.0
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
       display-name: 'Cat Page'
       tags: 'minimal rhel9 rabe s2i python python311 catpage'
   release-mkdocs:
-    uses: radiorabe/actions/.github/workflows/release-mkdocs.yaml@v0.22.4
+    uses: radiorabe/actions/.github/workflows/release-mkdocs.yaml@v0.24.0
   helm-chart:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
