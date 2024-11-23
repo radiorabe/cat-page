@@ -36,7 +36,7 @@ pytest-cov = "^6.0.0"
 pytest-mypy = "^0.10.3"
 pytest-random-order = "^1.1.1"
 pytest-ruff = "^0.4"
-ruff = "^0.7.4"
+ruff = "^0.8.0"
 
 [tool.pytest.ini_options]
 addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=app --cov-fail-under=100 --ruff --mypy --ignore docs/"
