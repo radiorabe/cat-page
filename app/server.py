@@ -5,10 +5,11 @@ from __future__ import annotations
 import json
 import logging
 from pathlib import Path
-from typing import TYPE_CHECKING, Any, Iterable, Self
+from typing import TYPE_CHECKING, Any, Self
 
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Namespace as ArgparseNamespace
+    from collections.abc import Iterable
     from wsgiref.types import StartResponse, WSGIEnvironment
 
 import cherrypy  # type: ignore[import-untyped]
