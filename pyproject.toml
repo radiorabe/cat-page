@@ -30,7 +30,7 @@ CherryPy = "^18.10.0"
 cachelib = "^0.13.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.14.0"
+mypy = "^1.14.1"
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
 pytest-mypy = "^0.10.3"
