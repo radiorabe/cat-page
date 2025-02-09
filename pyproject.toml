@@ -30,13 +30,13 @@ CherryPy = "^18.10.0"
 cachelib = "^0.13.0"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.14.1"
+mypy = "^1.15.0"
 pytest = "^8.3.4"
 pytest-cov = "^6.0.0"
 pytest-mypy = "^0.10.3"
 pytest-random-order = "^1.1.1"
 pytest-ruff = "^0.4"
-ruff = "^0.9.3"
+ruff = "^0.9.5"
 
 [tool.pytest.ini_options]
 addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=app --cov-fail-under=100 --ruff --mypy --ignore docs/"
