@@ -1,4 +1,4 @@
-FROM ghcr.io/radiorabe/s2i-python:3.1.4 AS build
+FROM ghcr.io/radiorabe/s2i-python:3.3.0 AS build
 
 COPY --chown=1001:0 ./ /opt/app-root/src/
 
