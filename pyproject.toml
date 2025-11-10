@@ -38,8 +38,8 @@ pytest-random-order = "^1.2.0"
 pytest-ruff = "^0.5"
 ruff = "^0.14.4"
 
-[tool.pytest.ini_options]
-addopts = "-ra -q --random-order --doctest-glob='*.md' --doctest-modules --cov=app --cov-fail-under=100 --ruff --mypy --ignore docs/"
+[tool.pytest]
+addopts = ["-ra", "-q", "--random-order", "--doctest-glob='*.md'", "--doctest-modules", "--cov=app", "--cov-fail-under=100", "--ruff", "--mypy", "--ignore=docs/"]
 filterwarnings = ["ignore::DeprecationWarning:pkg_resources", "ignore::DeprecationWarning:cherrypy"]
 
 [build-system]
