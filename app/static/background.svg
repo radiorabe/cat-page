@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <rect width="1920" height="1080" fill="#7ff0eb"/>
+  <!-- Subtle concentric radio-wave rings, centred on the logo area -->
+  <g fill="none" stroke="#5bd8d3" stroke-width="2" opacity="0.5">
+    <circle cx="960" cy="540" r="180">
+      <animate attributeName="r" values="180;520;180" dur="6s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0;0.5" dur="6s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="960" cy="540" r="340">
+      <animate attributeName="r" values="340;680;340" dur="6s" begin="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0;0.5" dur="6s" begin="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="960" cy="540" r="500">
+      <animate attributeName="r" values="500;840;500" dur="6s" begin="4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.5;0;0.5" dur="6s" begin="4s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

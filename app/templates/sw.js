@@ -6,6 +6,12 @@ self.addEventListener('install', function(e) {
        '/',
        '/static/funny-pictures-cat-sound-studio.jpg',
        '/static/fjalla-one-latin-400.woff2',
+       '/static/background.svg',
+       '/static/icon.svg',
+       '/static/icon-192.png',
+       '/static/icon-512.png',
+       '/static/apple-touch-icon.png',
+       '/static/favicon.png',
      ]);
    })
  );
