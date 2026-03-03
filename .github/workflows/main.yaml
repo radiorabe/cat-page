@@ -3,14 +3,22 @@ name: Test
 on:
   pull_request:
 
+permissions: {}
+
 jobs:
   pre-commit:
+    permissions:
+      contents: read
     uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.40.0
   python-poetry:
+    permissions:
+      contents: read
     uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.40.0
   helm-chart:
     name: Test Helm Chart
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v6
         with:
