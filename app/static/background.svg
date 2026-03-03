@@ -1,19 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
   <rect width="1920" height="1080" fill="#7ff0eb"/>
-  <!-- Subtle concentric radio-wave rings, centred on the logo area -->
-  <g fill="none" stroke="#5bd8d3" stroke-width="2" opacity="0.5">
-    <circle cx="960" cy="540" r="180">
-      <animate attributeName="r" values="180;520;180" dur="6s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.5;0;0.5" dur="6s" repeatCount="indefinite"/>
+  <!-- Subtle pulsing radio waves in the background -->
+  <g fill="none" stroke="#5bd8d3" stroke-width="2" opacity="0.3">
+    <circle cx="960" cy="540" r="200">
+      <animate attributeName="r" values="200;600;200" dur="8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0;0.3" dur="8s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="960" cy="540" r="340">
-      <animate attributeName="r" values="340;680;340" dur="6s" begin="2s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.5;0;0.5" dur="6s" begin="2s" repeatCount="indefinite"/>
+    <circle cx="960" cy="540" r="400">
+      <animate attributeName="r" values="400;800;400" dur="8s" begin="2.5s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.3;0;0.3" dur="8s" begin="2.5s" repeatCount="indefinite"/>
     </circle>
-    <circle cx="960" cy="540" r="500">
-      <animate attributeName="r" values="500;840;500" dur="6s" begin="4s" repeatCount="indefinite"/>
-      <animate attributeName="opacity" values="0.5;0;0.5" dur="6s" begin="4s" repeatCount="indefinite"/>
-    </circle>
+  </g>
+  <!-- Cat 1: drifting left-to-right across middle -->
+  <g opacity="0.18">
+    <animateTransform attributeName="transform" type="translate"
+      values="-160,400; 2080,320; -160,400" dur="22s" repeatCount="indefinite"/>
+    <!-- head -->
+    <ellipse cx="0" cy="0" rx="54" ry="48" fill="#231f20"/>
+    <!-- ears -->
+    <polygon points="-46,-36 -58,-80 -16,-30" fill="#231f20"/>
+    <polygon points="46,-36 58,-80 16,-30" fill="#231f20"/>
+    <!-- eyes -->
+    <ellipse cx="-18" cy="-8" rx="10" ry="12" fill="#7ff0eb"/>
+    <ellipse cx="18" cy="-8" rx="10" ry="12" fill="#7ff0eb"/>
+    <!-- tail curling up -->
+    <path d="M54,20 Q110,0 100,-50" fill="none" stroke="#231f20" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <!-- Cat 2: drifting right-to-left, lower -->
+  <g opacity="0.15">
+    <animateTransform attributeName="transform" type="translate"
+      values="2080,720; -160,780; 2080,720" dur="28s" repeatCount="indefinite"/>
+    <ellipse cx="0" cy="0" rx="44" ry="40" fill="#231f20"/>
+    <polygon points="-38,-30 -48,-66 -12,-24" fill="#231f20"/>
+    <polygon points="38,-30 48,-66 12,-24" fill="#231f20"/>
+    <ellipse cx="-15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
+    <ellipse cx="15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
+    <path d="M44,16 Q90,-4 82,-44" fill="none" stroke="#231f20" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <!-- Cat 3: bouncing up-down on left side -->
+  <g opacity="0.12" transform="translate(220,0)">
+    <animateTransform attributeName="transform" type="translate"
+      values="220,200; 220,800; 220,200" dur="15s" calcMode="spline"
+      keySplines="0.4 0 0.6 1; 0.4 0 0.6 1" repeatCount="indefinite"/>
+    <ellipse cx="0" cy="0" rx="50" ry="44" fill="#231f20"/>
+    <polygon points="-42,-34 -54,-76 -14,-28" fill="#231f20"/>
+    <polygon points="42,-34 54,-76 14,-28" fill="#231f20"/>
+    <ellipse cx="-16" cy="-7" rx="9" ry="11" fill="#7ff0eb"/>
+    <ellipse cx="16" cy="-7" rx="9" ry="11" fill="#7ff0eb"/>
+  </g>
+  <!-- Cat 4: bouncing right side -->
+  <g opacity="0.12" transform="translate(1700,0)">
+    <animateTransform attributeName="transform" type="translate"
+      values="1700,900; 1700,200; 1700,900" dur="19s" calcMode="spline"
+      keySplines="0.4 0 0.6 1; 0.4 0 0.6 1" repeatCount="indefinite"/>
+    <ellipse cx="0" cy="0" rx="46" ry="42" fill="#231f20"/>
+    <polygon points="-40,-32 -52,-72 -13,-26" fill="#231f20"/>
+    <polygon points="40,-32 52,-72 13,-26" fill="#231f20"/>
+    <ellipse cx="-15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
+    <ellipse cx="15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
+    <path d="M46,18 Q88,-2 80,-40" fill="none" stroke="#231f20" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <!-- Scattered paw prints, fading in/out -->
+  <g fill="#231f20" opacity="0">
+    <animate attributeName="opacity" values="0;0.12;0" dur="5s" begin="0s" repeatCount="indefinite"/>
+    <!-- paw at 300,180 -->
+    <ellipse cx="300" cy="196" rx="14" ry="11"/>
+    <ellipse cx="285" cy="181" rx="7" ry="6"/>
+    <ellipse cx="300" cy="178" rx="7" ry="6"/>
+    <ellipse cx="315" cy="181" rx="7" ry="6"/>
+  </g>
+  <g fill="#231f20" opacity="0">
+    <animate attributeName="opacity" values="0;0.10;0" dur="7s" begin="1.5s" repeatCount="indefinite"/>
+    <!-- paw at 1600,280 -->
+    <ellipse cx="1600" cy="296" rx="14" ry="11"/>
+    <ellipse cx="1585" cy="281" rx="7" ry="6"/>
+    <ellipse cx="1600" cy="278" rx="7" ry="6"/>
+    <ellipse cx="1615" cy="281" rx="7" ry="6"/>
+  </g>
+  <g fill="#231f20" opacity="0">
+    <animate attributeName="opacity" values="0;0.10;0" dur="6s" begin="3s" repeatCount="indefinite"/>
+    <!-- paw at 900,820 -->
+    <ellipse cx="900" cy="836" rx="14" ry="11"/>
+    <ellipse cx="885" cy="821" rx="7" ry="6"/>
+    <ellipse cx="900" cy="818" rx="7" ry="6"/>
+    <ellipse cx="915" cy="821" rx="7" ry="6"/>
+  </g>
+  <g fill="#231f20" opacity="0">
+    <animate attributeName="opacity" values="0;0.08;0" dur="9s" begin="4.5s" repeatCount="indefinite"/>
+    <!-- paw at 1400,600 -->
+    <ellipse cx="1400" cy="616" rx="14" ry="11"/>
+    <ellipse cx="1385" cy="601" rx="7" ry="6"/>
+    <ellipse cx="1400" cy="598" rx="7" ry="6"/>
+    <ellipse cx="1415" cy="601" rx="7" ry="6"/>
   </g>
 </svg>
