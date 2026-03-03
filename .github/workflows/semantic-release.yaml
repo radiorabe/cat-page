@@ -6,8 +6,12 @@ on:
       - main
       - release/*
 
+permissions: {}
+
 jobs:
   semantic-release:
-    uses: radiorabe/actions/.github/workflows/semantic-release.yaml@v0.39.3
+    permissions:
+      contents: read
+    uses: radiorabe/actions/.github/workflows/semantic-release.yaml@v0.40.0
     secrets:
       RABE_ITREAKTION_GITHUB_TOKEN: ${{ secrets.RABE_ITREAKTION_GITHUB_TOKEN }}
