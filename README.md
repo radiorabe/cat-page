@@ -67,9 +67,9 @@ You can run our tests with `pytest`. Please keep in mind that we expect to keep 
 poetry run pytest
 ```
 
-### Formating code using a pre-commit hook
+### Formatting code using a pre-commit hook
 
-There is a pre-commit hook facility that tests code for formating and validity. You should install run
+There is a pre-commit hook facility that tests code for formatting and validity. You should install run
 this on your dev env to ensure that all the code is properly formatted and your changes will pass CI.
 
 ```bash
@@ -77,7 +77,7 @@ pip install pre-commit
 pre-commit install
 ```
 
-### Commiting with commitizen
+### Committing with commitizen
 
 This project uses [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog) style
 commit messages to help generate proper releases. Please check out the [`git-cz`](https://github.com/commitizen/cz-cli)
