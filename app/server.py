@@ -49,7 +49,7 @@ def get_config(*, parse: bool = True) -> ArgparseNamespace:
     parser.add_argument(
         "--background-image",
         env_var="PAGE_BACKGROUND",
-        default="https://rabe.ch/wp-content/uploads/2016/07/Header.gif",
+        default="/static/background.svg",
     )
     parser.add_argument("--links", env_var="PAGE_LINKS", action="append", default=[])
     parser.add_argument("--address", env_var="PAGE_ADDRESS", default="127.0.0.1")
