@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
   <rect width="1920" height="1080" fill="#7ff0eb"/>
-  <!-- Subtle pulsing radio waves in the background -->
+  <!-- Subtle pulsing radio waves -->
   <g fill="none" stroke="#5bd8d3" stroke-width="2" opacity="0.3">
     <circle cx="960" cy="540" r="200">
       <animate attributeName="r" values="200;600;200" dur="8s" repeatCount="indefinite"/>
@@ -12,86 +12,108 @@
       <animate attributeName="opacity" values="0.3;0;0.3" dur="8s" begin="2.5s" repeatCount="indefinite"/>
     </circle>
   </g>
-  <!-- Cat 1: drifting left-to-right across middle -->
+  <!--
+    Corvus silhouettes — the RaBe mascot drifts across the screen.
+    Two perched ravens drift horizontally; two fly with wings spread.
+  -->
+  <!-- Perched raven 1: drifting left-to-right -->
   <g opacity="0.18">
     <animateTransform attributeName="transform" type="translate"
-      values="-160,400; 2080,320; -160,400" dur="22s" repeatCount="indefinite"/>
+      values="-120,400; 2040,340; -120,400" dur="26s" repeatCount="indefinite"/>
+    <!-- body -->
+    <ellipse cx="0" cy="0" rx="44" ry="22" fill="#231f20"/>
     <!-- head -->
-    <ellipse cx="0" cy="0" rx="54" ry="48" fill="#231f20"/>
-    <!-- ears -->
-    <polygon points="-46,-36 -58,-80 -16,-30" fill="#231f20"/>
-    <polygon points="46,-36 58,-80 16,-30" fill="#231f20"/>
-    <!-- eyes -->
-    <ellipse cx="-18" cy="-8" rx="10" ry="12" fill="#7ff0eb"/>
-    <ellipse cx="18" cy="-8" rx="10" ry="12" fill="#7ff0eb"/>
-    <!-- tail curling up -->
-    <path d="M54,20 Q110,0 100,-50" fill="none" stroke="#231f20" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="-30" cy="-22" rx="17" ry="14" fill="#231f20"/>
+    <!-- beak (pointing left) -->
+    <polygon points="-47,-24 -62,-20 -47,-15" fill="#231f20"/>
+    <!-- tail fan -->
+    <polygon points="40,-5 72,6 72,-16" fill="#231f20"/>
+    <!-- legs -->
+    <line x1="-5" y1="22" x2="-9" y2="42" stroke="#231f20" stroke-width="4" stroke-linecap="round"/>
+    <line x1="8" y1="22" x2="11" y2="42" stroke="#231f20" stroke-width="4" stroke-linecap="round"/>
+    <!-- toes left foot -->
+    <line x1="-9" y1="42" x2="-20" y2="47" stroke="#231f20" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-9" y1="42" x2="-9" y2="50" stroke="#231f20" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="-9" y1="42" x2="0" y2="47" stroke="#231f20" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- toes right foot -->
+    <line x1="11" y1="42" x2="2" y2="47" stroke="#231f20" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="11" y1="42" x2="11" y2="50" stroke="#231f20" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="11" y1="42" x2="22" y2="47" stroke="#231f20" stroke-width="2.5" stroke-linecap="round"/>
   </g>
-  <!-- Cat 2: drifting right-to-left, lower -->
+  <!-- Perched raven 2: drifting right-to-left, lower -->
   <g opacity="0.15">
     <animateTransform attributeName="transform" type="translate"
-      values="2080,720; -160,780; 2080,720" dur="28s" repeatCount="indefinite"/>
-    <ellipse cx="0" cy="0" rx="44" ry="40" fill="#231f20"/>
-    <polygon points="-38,-30 -48,-66 -12,-24" fill="#231f20"/>
-    <polygon points="38,-30 48,-66 12,-24" fill="#231f20"/>
-    <ellipse cx="-15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
-    <ellipse cx="15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
-    <path d="M44,16 Q90,-4 82,-44" fill="none" stroke="#231f20" stroke-width="8" stroke-linecap="round"/>
+      values="2040,700; -120,760; 2040,700" dur="32s" repeatCount="indefinite"/>
+    <ellipse cx="0" cy="0" rx="38" ry="19" fill="#231f20"/>
+    <ellipse cx="-26" cy="-19" rx="14" ry="12" fill="#231f20"/>
+    <polygon points="-40,-21 -54,-17 -40,-13" fill="#231f20"/>
+    <polygon points="36,-4 62,5 62,-14" fill="#231f20"/>
+    <line x1="-4" y1="19" x2="-7" y2="36" stroke="#231f20" stroke-width="3" stroke-linecap="round"/>
+    <line x1="7" y1="19" x2="9" y2="36" stroke="#231f20" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-7" y1="36" x2="-16" y2="40" stroke="#231f20" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-7" y1="36" x2="-7" y2="43" stroke="#231f20" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-7" y1="36" x2="2" y2="40" stroke="#231f20" stroke-width="2" stroke-linecap="round"/>
+    <line x1="9" y1="36" x2="1" y2="40" stroke="#231f20" stroke-width="2" stroke-linecap="round"/>
+    <line x1="9" y1="36" x2="9" y2="43" stroke="#231f20" stroke-width="2" stroke-linecap="round"/>
+    <line x1="9" y1="36" x2="18" y2="40" stroke="#231f20" stroke-width="2" stroke-linecap="round"/>
   </g>
-  <!-- Cat 3: bouncing up-down on left side -->
-  <g opacity="0.12" transform="translate(220,0)">
+  <!-- Flying raven 3: soaring, drifting across upper area -->
+  <g opacity="0.13">
     <animateTransform attributeName="transform" type="translate"
-      values="220,200; 220,800; 220,200" dur="15s" calcMode="spline"
-      keySplines="0.4 0 0.6 1; 0.4 0 0.6 1" repeatCount="indefinite"/>
-    <ellipse cx="0" cy="0" rx="50" ry="44" fill="#231f20"/>
-    <polygon points="-42,-34 -54,-76 -14,-28" fill="#231f20"/>
-    <polygon points="42,-34 54,-76 14,-28" fill="#231f20"/>
-    <ellipse cx="-16" cy="-7" rx="9" ry="11" fill="#7ff0eb"/>
-    <ellipse cx="16" cy="-7" rx="9" ry="11" fill="#7ff0eb"/>
+      values="-200,200; 2120,260; -200,200" dur="38s" repeatCount="indefinite"/>
+    <!-- body -->
+    <ellipse cx="0" cy="0" rx="28" ry="13" fill="#231f20"/>
+    <!-- head -->
+    <ellipse cx="-20" cy="-9" rx="12" ry="10" fill="#231f20"/>
+    <!-- beak -->
+    <polygon points="-32,-11 -46,-9 -32,-6" fill="#231f20"/>
+    <!-- left wing spread -->
+    <path d="M-8,-6 C-30,-36 -72,-42 -96,-28 C-72,-24 -38,-10 -8,2 Z" fill="#231f20"/>
+    <!-- right wing spread -->
+    <path d="M8,-6 C30,-36 72,-42 96,-28 C72,-24 38,-10 8,2 Z" fill="#231f20"/>
+    <!-- tail -->
+    <polygon points="26,6 50,20 54,10 58,22 34,14" fill="#231f20"/>
   </g>
-  <!-- Cat 4: bouncing right side -->
-  <g opacity="0.12" transform="translate(1700,0)">
+  <!-- Flying raven 4: soaring lower, opposite direction -->
+  <g opacity="0.12">
     <animateTransform attributeName="transform" type="translate"
-      values="1700,900; 1700,200; 1700,900" dur="19s" calcMode="spline"
-      keySplines="0.4 0 0.6 1; 0.4 0 0.6 1" repeatCount="indefinite"/>
-    <ellipse cx="0" cy="0" rx="46" ry="42" fill="#231f20"/>
-    <polygon points="-40,-32 -52,-72 -13,-26" fill="#231f20"/>
-    <polygon points="40,-32 52,-72 13,-26" fill="#231f20"/>
-    <ellipse cx="-15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
-    <ellipse cx="15" cy="-6" rx="8" ry="10" fill="#7ff0eb"/>
-    <path d="M46,18 Q88,-2 80,-40" fill="none" stroke="#231f20" stroke-width="8" stroke-linecap="round"/>
+      values="2120,820; -200,860; 2120,820" dur="44s" repeatCount="indefinite"/>
+    <ellipse cx="0" cy="0" rx="24" ry="11" fill="#231f20"/>
+    <ellipse cx="-17" cy="-8" rx="10" ry="9" fill="#231f20"/>
+    <polygon points="-27,-9 -40,-8 -27,-5" fill="#231f20"/>
+    <path d="M-7,-5 C-26,-30 -62,-36 -82,-24 C-62,-20 -32,-9 -7,2 Z" fill="#231f20"/>
+    <path d="M7,-5 C26,-30 62,-36 82,-24 C62,-20 32,-9 7,2 Z" fill="#231f20"/>
+    <polygon points="22,5 42,16 46,8 50,18 30,12" fill="#231f20"/>
   </g>
-  <!-- Scattered paw prints, fading in/out -->
+  <!-- Feather drops — fading in and out at random positions -->
   <g fill="#231f20" opacity="0">
-    <animate attributeName="opacity" values="0;0.12;0" dur="5s" begin="0s" repeatCount="indefinite"/>
-    <!-- paw at 300,180 -->
-    <ellipse cx="300" cy="196" rx="14" ry="11"/>
-    <ellipse cx="285" cy="181" rx="7" ry="6"/>
-    <ellipse cx="300" cy="178" rx="7" ry="6"/>
-    <ellipse cx="315" cy="181" rx="7" ry="6"/>
+    <animate attributeName="opacity" values="0;0.11;0" dur="5s" begin="0s" repeatCount="indefinite"/>
+    <!-- feather at 320,170 -->
+    <path d="M320,155 C312,165 311,182 320,188 C329,182 328,165 320,155 Z"/>
+    <line x1="320" y1="155" x2="320" y2="188" stroke="#7ff0eb" stroke-width="1.5"/>
   </g>
   <g fill="#231f20" opacity="0">
-    <animate attributeName="opacity" values="0;0.10;0" dur="7s" begin="1.5s" repeatCount="indefinite"/>
-    <!-- paw at 1600,280 -->
-    <ellipse cx="1600" cy="296" rx="14" ry="11"/>
-    <ellipse cx="1585" cy="281" rx="7" ry="6"/>
-    <ellipse cx="1600" cy="278" rx="7" ry="6"/>
-    <ellipse cx="1615" cy="281" rx="7" ry="6"/>
+    <animate attributeName="opacity" values="0;0.09;0" dur="7s" begin="1.8s" repeatCount="indefinite"/>
+    <!-- feather at 1580,260 -->
+    <path d="M1580,244 C1572,254 1571,272 1580,278 C1589,272 1588,254 1580,244 Z"/>
+    <line x1="1580" y1="244" x2="1580" y2="278" stroke="#7ff0eb" stroke-width="1.5"/>
   </g>
   <g fill="#231f20" opacity="0">
-    <animate attributeName="opacity" values="0;0.10;0" dur="6s" begin="3s" repeatCount="indefinite"/>
-    <!-- paw at 900,820 -->
-    <ellipse cx="900" cy="836" rx="14" ry="11"/>
-    <ellipse cx="885" cy="821" rx="7" ry="6"/>
-    <ellipse cx="900" cy="818" rx="7" ry="6"/>
-    <ellipse cx="915" cy="821" rx="7" ry="6"/>
+    <animate attributeName="opacity" values="0;0.09;0" dur="6s" begin="3.2s" repeatCount="indefinite"/>
+    <!-- feather at 880,810 -->
+    <path d="M880,794 C872,804 871,822 880,828 C889,822 888,804 880,794 Z"/>
+    <line x1="880" y1="794" x2="880" y2="828" stroke="#7ff0eb" stroke-width="1.5"/>
   </g>
   <g fill="#231f20" opacity="0">
-    <animate attributeName="opacity" values="0;0.08;0" dur="9s" begin="4.5s" repeatCount="indefinite"/>
-    <!-- paw at 1400,600 -->
-    <ellipse cx="1400" cy="616" rx="14" ry="11"/>
-    <ellipse cx="1385" cy="601" rx="7" ry="6"/>
-    <ellipse cx="1400" cy="598" rx="7" ry="6"/>
-    <ellipse cx="1415" cy="601" rx="7" ry="6"/>
+    <animate attributeName="opacity" values="0;0.07;0" dur="9s" begin="5s" repeatCount="indefinite"/>
+    <!-- feather at 1380,590 -->
+    <path d="M1380,574 C1372,584 1371,601 1380,607 C1389,601 1388,584 1380,574 Z"/>
+    <line x1="1380" y1="574" x2="1380" y2="607" stroke="#7ff0eb" stroke-width="1.5"/>
+  </g>
+  <g fill="#231f20" opacity="0">
+    <animate attributeName="opacity" values="0;0.08;0" dur="8s" begin="2.5s" repeatCount="indefinite"/>
+    <!-- feather at 600,450 -->
+    <path d="M600,434 C592,444 591,461 600,467 C609,461 608,444 600,434 Z"/>
+    <line x1="600" y1="434" x2="600" y2="467" stroke="#7ff0eb" stroke-width="1.5"/>
   </g>
 </svg>
