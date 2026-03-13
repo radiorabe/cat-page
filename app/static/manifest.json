@@ -7,9 +7,21 @@
       "src": "/static/funny-pictures-cat-sound-studio.jpg",
       "type": "image/jpeg",
       "sizes": "350x339"
+    },
+    {
+      "src": "/static/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/static/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
-  "background_color": "#ffffff",
+  "background_color": "#7ff0eb",
   "display": "standalone",
   "scope": "/",
   "theme_color": "#7ff0eb"
