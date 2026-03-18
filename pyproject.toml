@@ -42,7 +42,18 @@ ruff = "^0.15.6"
 
 [tool.pytest.ini_options]
 minversion = "9.0"
-addopts = ["-ra", "-q", "--random-order", "--doctest-glob=*.md", "--doctest-modules", "--cov=app", "--cov-fail-under=100", "--ruff", "--mypy", "--ignore=docs/"]
+addopts = [
+  "-ra",
+  "-q",
+  "--random-order",
+  "--doctest-glob=*.md",
+  "--doctest-modules",
+  "--cov=app",
+  "--cov-fail-under=100",
+  "--ruff",
+  "--mypy",
+  "--ignore=docs/",
+]
 filterwarnings = ["ignore::DeprecationWarning:pkg_resources"]
 
 [build-system]

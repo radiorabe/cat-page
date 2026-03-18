@@ -141,7 +141,12 @@ class Server:
         media_type: str = "text/html",
         **context: Any,  # noqa: ANN401
     ) -> Response:
-        """Render template to cache and keep in cache forever."""
+        """Render template to cache and keep in cache forever.
+
+        The cache is keyed by template name. Context values come from config,
+        which is fixed at server construction time, so the same template always
+        renders with the same context within a server instance.
+        """
         if not self.cache.has(template_name):
             tpl = self.jinja_env.get_template(template_name)
             self.cache.set(template_name, tpl.render(**context), timeout=0)
