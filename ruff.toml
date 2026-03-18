@@ -69,6 +69,7 @@ ignore = [
 	"S108",    # /tmp is allowed in tests since it's expected to be mocked
 	"DTZ00",   # tests often run in UTC
 	"INP001",  # tests do not need a dunder init
+	"PLR2004", # HTTP status code integers are not magic values
 ]
 "**/__init__.py" = [
 	"D104",    # dunder init does not need a docstring because it might be empty

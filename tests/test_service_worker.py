@@ -4,4 +4,4 @@
 def test_worker(client):
     """Ensure we have a worker."""
     resp = client.get("/sw.js")
-    assert resp.status == "200 OK"
+    assert resp.status_code == 200

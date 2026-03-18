@@ -17,8 +17,9 @@ This directory contains the [pytest](https://docs.pytest.org/) test suite for th
 
 ## Key Conventions
 
-- **Fixtures** (`conftest.py`): Use `werkzeug.test.Client` against a `Server` instance created
-  with `server.get_config(parse=False)` (default config, no CLI parsing).
+- **Fixtures** (`conftest.py`): Use `starlette.testclient.TestClient` against a `Starlette`
+  app created with `server.create_app(server.get_config(parse=False))` (default config,
+  no CLI parsing). `TestClient` is synchronous and safe to use with standard pytest.
 - **Coverage**: Every new branch in `app/server.py` requires a corresponding test. Check with
   `poetry run pytest --cov=app --cov-report=term-missing`.
 - **Type checking**: `pytest-mypy` runs mypy as part of the test collection phase.

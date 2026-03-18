@@ -1,27 +1,24 @@
-"""Server that hosts our langing page thing with a cat."""
+"""Server that hosts our landing page thing with a cat."""
 
 from __future__ import annotations
 
-import json
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Self
 
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Namespace as ArgparseNamespace
-    from collections.abc import Iterable
-    from wsgiref.types import StartResponse, WSGIEnvironment
 
-import cherrypy  # type: ignore[import-untyped]
+    from starlette.requests import Request
+
+import uvicorn
 from cachelib.simple import SimpleCache
 from configargparse import ArgumentParser  # type: ignore[import-untyped]
 from jinja2 import Environment, FileSystemLoader
-from werkzeug.exceptions import HTTPException
-from werkzeug.middleware.shared_data import SharedDataMiddleware
-from werkzeug.routing import Map, Rule
-from werkzeug.serving import run_simple
-from werkzeug.utils import redirect
-from werkzeug.wrappers import Request, Response
+from starlette.applications import Starlette
+from starlette.responses import JSONResponse, RedirectResponse, Response
+from starlette.routing import Mount, Route
+from starlette.staticfiles import StaticFiles
 
 __version__ = "0.7.0"
 
@@ -94,9 +91,7 @@ def get_config(*, parse: bool = True) -> ArgparseNamespace:
 
 
 class Server:
-    """Main server servers static assets and renderds main page with links."""
-
-    DEFAULT_CACHE_TIMEOUT = 60 * 60 * 24 * 30
+    """Main server renders the landing page and serves the API."""
 
     def __init__(self: Self, config: ArgparseNamespace) -> None:
         """Initialize server with cache and templates."""
@@ -111,29 +106,10 @@ class Server:
             loader=FileSystemLoader(template_path),
             autoescape=True,
         )
-        self.url_map = Map(
-            [
-                Rule("/", endpoint="site"),
-                Rule("/sw.js", endpoint="service_worker"),
-                Rule("/api", endpoint="api"),
-                Rule("/.env", endpoint="hack"),
-                Rule("/wp-login.php", endpoint="hack"),
-                Rule("/wp-admin", endpoint="hack"),
-            ],
-        )
 
-    def dispatch_request(self: Self, request: Request) -> Response | HTTPException:
-        """Dispatch requests to handlers."""
-        adapter = self.url_map.bind_to_environ(request.environ)
-        try:
-            endpoint, values = adapter.match()  # pylint: disable=unpacking-non-sequence
-            return getattr(self, "on_" + endpoint)(request, **values)
-        except HTTPException as ex:
-            return ex
-
-    def on_site(self: Self, _: Request) -> Response:
+    async def on_site(self: Self, _: Request) -> Response:
         """Return main / page."""
-        return self.render_template(
+        return self._render_template(
             "index.html",
             title=self.page_title,
             background_url=self.page_background_image,
@@ -141,110 +117,90 @@ class Server:
             version=__version__,
         )
 
-    def on_service_worker(self: Self, _: Request) -> Response:
+    async def on_service_worker(self: Self, _: Request) -> Response:
         """Return a service worker for SPA reasons."""
-        return self.render_template(
+        return self._render_template(
             "sw.js",
-            mimetype="application/javascript",
-            background_url=self.page_background_image,
+            media_type="application/javascript",
         )
 
-    def on_api(self: Self, _: Request) -> Response:
-        """Return links as JSON request."""
-        return Response(
-            json.dumps({"version": __version__, "links": self.links}),
-            mimetype="application/json",
-        )
+    async def on_api(self: Self, _: Request) -> Response:
+        """Return links as JSON."""
+        return JSONResponse({"version": __version__, "links": self.links})
 
-    def on_hack(self: Self, _: Request) -> Response:
+    async def on_hack(self: Self, _: Request) -> Response:
         """Rickroll people trying to break in."""
-        return redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+        return RedirectResponse(
+            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            status_code=302,
+        )
 
-    def wsgi_app(
-        self: Self,
-        environ: WSGIEnvironment,
-        start_response: StartResponse,
-    ) -> Iterable[bytes]:
-        """Return a wsgi app."""
-        request = Request(environ)
-        response = self.dispatch_request(request)
-        return response(environ, start_response)
-
-    def __call__(
-        self: Self,
-        environ: WSGIEnvironment,
-        start_response: StartResponse,
-    ) -> Iterable[bytes]:
-        """Forward calls to wsgi_app."""
-        return self.wsgi_app(environ, start_response)
-
-    def render_template(
+    def _render_template(
         self: Self,
         template_name: str,
-        mimetype: str = "text/html",
+        media_type: str = "text/html",
         **context: Any,  # noqa: ANN401
     ) -> Response:
-        """Render template to cache and keep in cache forver."""
+        """Render template to cache and keep in cache forever."""
         if not self.cache.has(template_name):
             tpl = self.jinja_env.get_template(template_name)
-            self.cache.set(template_name, tpl.render(context), timeout=0)
+            self.cache.set(template_name, tpl.render(**context), timeout=0)
 
-        return Response(self.cache.get(template_name), mimetype=mimetype)
+        return Response(self.cache.get(template_name), media_type=media_type)
 
 
-def create_app(config: ArgparseNamespace) -> Server:
-    """Create the app server."""
-    app = Server(config)
+def create_app(config: ArgparseNamespace | None = None) -> Starlette:
+    """Create the ASGI app."""
+    if config is None:
+        config = get_config(parse=False)
+    srv = Server(config)
+    routes: list[Route | Mount] = [
+        Route("/", srv.on_site),
+        Route("/sw.js", srv.on_service_worker),
+        Route("/api", srv.on_api),
+        Route("/.env", srv.on_hack),
+        Route("/wp-login.php", srv.on_hack),
+        Route("/wp-admin", srv.on_hack),
+    ]
     if config.static:
-        app.wsgi_app = SharedDataMiddleware(  # type: ignore[method-assign]
-            app.wsgi_app,
-            {"/static": str(Path(__file__).parent / "static")},  # type: ignore[arg-type]
-            cache_timeout=Server.DEFAULT_CACHE_TIMEOUT,
+        routes.append(
+            Mount("/static", StaticFiles(directory=Path(__file__).parent / "static")),
         )
-    return app
+    return Starlette(routes=routes)
 
 
-def run_devserver(
-    app: Server,
-    config: ArgparseNamespace,
-) -> None:  # pragma: no cover
-    """Run a simple werkzeug devserver."""
+def run_devserver(config: ArgparseNamespace) -> None:  # pragma: no cover
+    """Run a uvicorn dev server with auto-reload."""
     logger.info("Starting development server")
+    uvicorn.run(
+        "app.server:create_app",
+        factory=True,
+        host=config.address,
+        port=config.port,
+        reload=True,
+    )
 
-    run_simple(config.address, config.port, app, use_debugger=True, use_reloader=True)  # type: ignore[arg-type]
 
-
-def run_webserver(
-    app: Server,
-    config: ArgparseNamespace,
-) -> None:  # pragma: no cover
-    """Run the production cherrypy server."""
+def run_webserver(config: ArgparseNamespace) -> None:  # pragma: no cover
+    """Run the production uvicorn server."""
     logger.info("Starting production server")
-
-    cherrypy.tree.graft(app, "/")
-    cherrypy.server.unsubscribe()
-
-    server = cherrypy._cpserver.Server()  # noqa: SLF001
-
-    server.socket_host = config.address
-    server.socket_port = config.port
-    server.thread_pool = config.thread_pool
-
-    server.subscribe()
-
-    cherrypy.engine.start()
-    cherrypy.engine.block()
+    uvicorn.run(
+        "app.server:create_app",
+        factory=True,
+        host=config.address,
+        port=config.port,
+        workers=config.thread_pool,
+    )
 
 
 def main() -> None:  # pragma: no cover
     """Start dev or prod server."""
     logger.info("Starting cat-page server version %s", __version__)
     cfg = get_config()
-    app = create_app(cfg)
     if cfg.dev:
-        run_devserver(app, cfg)
+        run_devserver(cfg)
     else:
-        run_webserver(app, cfg)
+        run_webserver(cfg)
 
 
 if __name__ == "__main__":  # pragma: no cover

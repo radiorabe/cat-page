@@ -14,6 +14,8 @@ jobs:
     permissions:
       contents: read
     uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.41.1
+    with:
+      version: '3.12'
   helm-chart:
     name: Test Helm Chart
     runs-on: ubuntu-latest

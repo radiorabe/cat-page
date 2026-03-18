@@ -9,7 +9,8 @@ classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: GNU Affero General Public License v3",
-    "Topic :: Multimedia :: Sound/Audio :: Conversion",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Internet :: WWW/HTTP",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 readme = "README.md"
@@ -22,14 +23,15 @@ packages = [
 catpage = 'app.server:main'
 
 [tool.poetry.dependencies]
-python = "^3.11"
-Werkzeug = "^3.1.6"
+python = "^3.12"
+starlette = "^0.52.1"
 Jinja2 = "^3.1.6"
 configargparse = "^1.7"
-CherryPy = "^18.10.0"
+uvicorn = {version = "^0.42.0", extras = ["standard"]}
 cachelib = "^0.13.0"
 
 [tool.poetry.group.dev.dependencies]
+httpx = "^0.28.1"
 mypy = "^1.19.1"
 pytest = "^9.0.2"
 pytest-cov = "^7.0.0"
@@ -38,10 +40,10 @@ pytest-random-order = "^1.2.0"
 pytest-ruff = "^0.5"
 ruff = "^0.15.6"
 
-[tool.pytest]
+[tool.pytest.ini_options]
 minversion = "9.0"
-addopts = ["-ra", "-q", "--random-order", "--doctest-glob='*.md'", "--doctest-modules", "--cov=app", "--cov-fail-under=100", "--ruff", "--mypy", "--ignore=docs/"]
-filterwarnings = ["ignore::DeprecationWarning:pkg_resources", "ignore::DeprecationWarning:cherrypy"]
+addopts = ["-ra", "-q", "--random-order", "--doctest-glob=*.md", "--doctest-modules", "--cov=app", "--cov-fail-under=100", "--ruff", "--mypy", "--ignore=docs/"]
+filterwarnings = ["ignore::DeprecationWarning:pkg_resources"]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
