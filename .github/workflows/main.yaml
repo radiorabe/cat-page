@@ -9,11 +9,11 @@ jobs:
   pre-commit:
     permissions:
       contents: read
-    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.41.1
+    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@v0.41.3
   python-poetry:
     permissions:
       contents: read
-    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.41.1
+    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@v0.41.3
   helm-chart:
     name: Test Helm Chart
     runs-on: ubuntu-latest
