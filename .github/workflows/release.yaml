@@ -16,7 +16,7 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.41.1
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@v0.41.3
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
@@ -25,7 +25,7 @@ jobs:
   release-mkdocs:
     permissions:
       contents: write
-    uses: radiorabe/actions/.github/workflows/release-mkdocs.yaml@v0.41.1
+    uses: radiorabe/actions/.github/workflows/release-mkdocs.yaml@v0.41.3
   helm-chart:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')
