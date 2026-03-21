@@ -17,7 +17,7 @@ updates:
     commit-message:
       prefix: "chore(ci): "
     groups:
-      actions:
+      pre-commit:
         patterns:
           - "*"
   - package-ecosystem: pre-commit

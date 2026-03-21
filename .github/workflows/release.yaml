@@ -36,14 +36,14 @@ jobs:
       packages: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Prepare Chart Metadata
         id: chartmeta
         run: echo version=${GITHUB_REF#refs/tags/v} >> $GITHUB_OUTPUT
 
       - name: Set up Helm
-        uses: azure/setup-helm@v4
+        uses: azure/setup-helm@1a275c3b69536ee54be43f2070a358922e12c8d4 # v4.3.1
         with:
           version: v3.12.0
 
@@ -51,7 +51,7 @@ jobs:
         run: helm package --version ${{ steps.chartmeta.outputs.version }} --app-version ${{ steps.chartmeta.outputs.version }} --destination=dist charts/catpage
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v4
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4.0.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
