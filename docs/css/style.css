@@ -1,10 +1,139 @@
-/* set primary color */
+/* ───────────────────────────────────────────────────
+   Brand colours
+─────────────────────────────────────────────────── */
 :root {
   --md-primary-fg-color:        #00C9BF;
+  --md-primary-fg-color--light: #33d4cb;
+  --md-primary-fg-color--dark:  #009e96;
   --md-accent-fg-color:         #00C9BF;
 }
 
-/* make code selectable on main */
+/* make code non-selectable (shell prompt operators) */
 .highlight .o {
-    user-select: none;
+  user-select: none;
+}
+
+/* ───────────────────────────────────────────────────
+   Hero section (home page)
+─────────────────────────────────────────────────── */
+.tx-hero {
+  padding: 2rem 0 3rem;
+  background: linear-gradient(
+    135deg,
+    var(--md-primary-fg-color--dark) 0%,
+    var(--md-primary-fg-color) 60%,
+    var(--md-primary-fg-color--light) 100%
+  );
+  color: #fff;
+}
+
+[data-md-color-scheme="default"] .tx-hero {
+  background: linear-gradient(
+    135deg,
+    var(--md-primary-fg-color--dark) 0%,
+    var(--md-primary-fg-color) 60%,
+    var(--md-primary-fg-color--light) 100%
+  );
+}
+
+.tx-hero .md-grid {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 18rem;
+}
+
+.tx-hero__content {
+  color: #fff;
+}
+
+.tx-hero__content h1 {
+  color: #fff !important;
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: .8rem;
+}
+
+.tx-hero__content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.6rem;
+  opacity: .92;
+}
+
+.tx-hero__content .md-button {
+  border-radius: 4px;
+  font-size: .9rem;
+  font-weight: 600;
+  margin-right: .6rem;
+  margin-bottom: .6rem;
+  padding: .5rem 1.2rem;
+}
+
+.tx-hero__content .md-button--primary {
+  background-color: #fff;
+  color: var(--md-primary-fg-color--dark) !important;
+  border: 2px solid #fff;
+}
+
+.tx-hero__content .md-button--primary:hover {
+  background-color: rgba(255,255,255,.88);
+}
+
+.tx-hero__content .md-button:not(.md-button--primary) {
+  background-color: transparent;
+  border: 2px solid rgba(255,255,255,.75);
+  color: #fff !important;
+}
+
+.tx-hero__content .md-button:not(.md-button--primary):hover {
+  border-color: #fff;
+  background-color: rgba(255,255,255,.12);
+}
+
+/* ───────────────────────────────────────────────────
+   Feature grid (home page)
+─────────────────────────────────────────────────── */
+.tx-features {
+  padding: 3rem 0;
+}
+
+.tx-features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.6rem;
+}
+
+.tx-feature {
+  padding: 1.4rem 1.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  transition: box-shadow .2s, border-color .2s;
+}
+
+.tx-feature:hover {
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+  border-color: var(--md-primary-fg-color);
+}
+
+.tx-feature__icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-bottom: .6rem;
+}
+
+.tx-feature h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 .4rem;
+  border: none;
+  color: var(--md-typeset-color);
+}
+
+.tx-feature p {
+  font-size: .85rem;
+  line-height: 1.55;
+  margin: 0;
+  color: var(--md-default-fg-color--light);
 }

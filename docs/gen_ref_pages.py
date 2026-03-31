@@ -1,23 +1,5 @@
-"""Generate the docs page.
+"""No-op placeholder retained for compatibility with the gen-files plugin invocation.
 
-From https://mkdocstrings.github.io/recipes/
+The documentation index is now a static ``docs/index.md``; this script is no longer
+needed but kept to avoid breaking any workflow that references it.
 """
-
-from pathlib import Path
-
-import mkdocs_gen_files
-
-with (
-    Path("README.md").open("r") as readme,
-    mkdocs_gen_files.open(
-        "index.md",
-        "w",
-    ) as index_file,
-):
-    index_file.writelines(readme.read())
-
-with (
-    Path("docs/screenshot.png").open("rb") as orig,
-    mkdocs_gen_files.open("docs/screenshot.png", "wb") as screenshot,
-):
-    screenshot.write(orig.read())

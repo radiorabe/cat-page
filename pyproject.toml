@@ -53,6 +53,7 @@ addopts = [
   "--ruff",
   "--mypy",
   "--ignore=docs/",
+  "--ignore=site/",
 ]
 filterwarnings = ["ignore::DeprecationWarning:pkg_resources"]
 
