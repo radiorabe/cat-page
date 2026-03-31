@@ -5,8 +5,8 @@
 This repository contains the **RaBe Cat Landing Page** – an overengineered intranet landing
 page for [Radio Bern RaBe](https://www.rabe.ch). It serves configurable links over a JSON API,
 renders a Jinja2 HTML template, and ships a service worker for offline support. The application
-is a [Werkzeug](https://werkzeug.palletsprojects.com/) WSGI app served by
-[CherryPy](https://cherrypy.dev/) in production and Werkzeug's dev server for local work.
+is a [Quart](https://quart.palletsprojects.com/) ASGI app that uses `Quart.run()` backed by
+Hypercorn for both development (with auto-reload) and production.
 
 The documentation is built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)
 and published to GitHub Pages as part of the release workflow.
@@ -15,7 +15,7 @@ and published to GitHub Pages as part of the release workflow.
 
 ```
 app/                    # Python application package
-  server.py             # Entry point: WSGI server, config, routes
+  server.py             # Entry point: ASGI app, config, routes
   static/               # Static assets served under /static
   templates/            # Jinja2 HTML/JS templates (index.html, sw.js)
 tests/                  # pytest test suite (100% coverage required)
@@ -114,9 +114,8 @@ See `charts/AGENTS.md` for chart conventions.
 
 Tool docs:
 
-- [werkzeug.palletsprojects.com](https://werkzeug.palletsprojects.com/) – Werkzeug WSGI toolkit
+- [quart.palletsprojects.com](https://quart.palletsprojects.com/) – Quart async ASGI framework (pallets project)
 - [jinja.palletsprojects.com](https://jinja.palletsprojects.com/) – Jinja2 templating
-- [cherrypy.dev](https://cherrypy.dev/) – CherryPy production server
 - [python-poetry.org/docs](https://python-poetry.org/docs/) – Poetry package manager
 - [docs.pytest.org](https://docs.pytest.org/) – pytest test framework
 - [squidfunk.github.io/mkdocs-material](https://squidfunk.github.io/mkdocs-material/) – MkDocs Material theme
