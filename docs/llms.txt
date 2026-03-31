@@ -1,0 +1,14 @@
+# RaBe Cat Landing Page
+
+The overengineered intranet landing page for Radio Bern RaBe. Serves configurable
+links over a JSON API, renders a Jinja2 HTML template, and ships a service worker
+for offline support. Built with Quart (async ASGI) and delivered as a container image.
+
+## Guide
+
+- [Getting Started](https://radiorabe.github.io/cat-page/getting-started/)
+- [Configuration](https://radiorabe.github.io/cat-page/configuration/)
+
+## Development
+
+- [Contributing](https://radiorabe.github.io/cat-page/contributing/)
