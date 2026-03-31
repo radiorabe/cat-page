@@ -115,6 +115,7 @@ See `charts/AGENTS.md` for chart conventions.
 Tool docs:
 
 - [quart.palletsprojects.com](https://quart.palletsprojects.com/) – Quart async ASGI framework (pallets project)
+- [jinja.palletsprojects.com](https://jinja.palletsprojects.com/) – Jinja2 templating
 - [hypercorn.readthedocs.io](https://hypercorn.readthedocs.io/) – Hypercorn ASGI server
 - [python-poetry.org/docs](https://python-poetry.org/docs/) – Poetry package manager
 - [docs.pytest.org](https://docs.pytest.org/) – pytest test framework
