@@ -1,0 +1,101 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+
+  <section class="tx-hero">
+    <div class="md-grid md-typeset">
+      <div class="tx-hero__content">
+        <h1>🐈 RaBe Cat Landing Page</h1>
+        <p>
+          The overengineered intranet landing page Radio Bern RaBe deserves.<br>
+          Configurable links, offline support, a JSON API — and a cat.
+        </p>
+        <a
+          href="{{ 'getting-started/' | url }}"
+          title="Getting Started"
+          class="md-button md-button--primary"
+        >
+          Get started
+        </a>
+        <a
+          href="{{ 'configuration/' | url }}"
+          title="Configuration Reference"
+          class="md-button"
+        >
+          Configuration
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block content %}
+  <section class="tx-features">
+    <div class="md-grid">
+      <div class="tx-features__grid md-typeset">
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🔗</div>
+          <h2>Configurable Links</h2>
+          <p>
+            Serve curated intranet service links via environment variables or a
+            config file. No rebuild required — just set <code>PAGE_LINKS</code>
+            and restart.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">📡</div>
+          <h2>JSON API</h2>
+          <p>
+            All links are available as machine-readable JSON at <code>/api</code>.
+            Build dashboards, integrations, or just pipe the output to
+            <strong>jq</strong>.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">📴</div>
+          <h2>Offline Support</h2>
+          <p>
+            A built-in <strong>service worker</strong> caches the page so your
+            team can still find the links even when the network is having a
+            moment.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🐳</div>
+          <h2>Container-Ready</h2>
+          <p>
+            Ships as a single container image published to
+            <strong>GitHub Packages</strong>. Drop it into any OCI runtime and
+            configure everything via <code>PAGE_*</code> environment variables.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">⚙️</div>
+          <h2>Twelve-Factor Config</h2>
+          <p>
+            Title, background, links, bind address and port — every tuneable is
+            driven by <strong>environment variables</strong> with sensible
+            defaults that are easy to override.
+          </p>
+        </div>
+
+        <div class="tx-feature">
+          <div class="tx-feature__icon">🧪</div>
+          <h2>100 % Test Coverage</h2>
+          <p>
+            The entire codebase is covered by a test suite using
+            <strong>pytest</strong> with mypy strict-mode type checking and
+            ruff linting — enforced by CI on every commit.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock %}
