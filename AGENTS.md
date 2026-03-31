@@ -5,8 +5,8 @@
 This repository contains the **RaBe Cat Landing Page** – an overengineered intranet landing
 page for [Radio Bern RaBe](https://www.rabe.ch). It serves configurable links over a JSON API,
 renders a Jinja2 HTML template, and ships a service worker for offline support. The application
-is a [Starlette](https://www.starlette.io/) ASGI app served by
-[uvicorn](https://www.uvicorn.org/) in production and with `--reload` for local development.
+is a [Quart](https://quart.palletsprojects.com/) ASGI app served by
+[Hypercorn](https://hypercorn.readthedocs.io/) in production and with `--reload` for local development.
 
 The documentation is built with [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)
 and published to GitHub Pages as part of the release workflow.
@@ -114,8 +114,8 @@ See `charts/AGENTS.md` for chart conventions.
 
 Tool docs:
 
-- [starlette.io](https://www.starlette.io/) – Starlette ASGI toolkit
-- [uvicorn.org](https://www.uvicorn.org/) – uvicorn ASGI server
+- [quart.palletsprojects.com](https://quart.palletsprojects.com/) – Quart async ASGI framework (pallets project)
+- [hypercorn.readthedocs.io](https://hypercorn.readthedocs.io/) – Hypercorn ASGI server
 - [python-poetry.org/docs](https://python-poetry.org/docs/) – Poetry package manager
 - [docs.pytest.org](https://docs.pytest.org/) – pytest test framework
 - [squidfunk.github.io/mkdocs-material](https://squidfunk.github.io/mkdocs-material/) – MkDocs Material theme

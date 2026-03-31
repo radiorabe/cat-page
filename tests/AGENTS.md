@@ -17,9 +17,12 @@ This directory contains the [pytest](https://docs.pytest.org/) test suite for th
 
 ## Key Conventions
 
-- **Fixtures** (`conftest.py`): Use `starlette.testclient.TestClient` against a `Starlette`
-  app created with `server.create_app(server.get_config(parse=False))` (default config,
-  no CLI parsing). `TestClient` is synchronous and safe to use with standard pytest.
+- **Fixtures** (`conftest.py`): Use `quart.typing.TestClientProtocol` via `app.test_client()`
+  against a `Quart` app created with `server.create_app(server.get_config(parse=False))`.
+  The fixture is `async` (requires `pytest-asyncio` with `asyncio_mode = "auto"`).
+- **All tests are async**: Test functions are `async def` and use `await client.get(...)`.
+  Response body is accessed via `await resp.get_data()` (bytes) or
+  `await resp.get_data(as_text=True)` (string).
 - **Coverage**: Every new branch in `app/server.py` requires a corresponding test. Check with
   `poetry run pytest --cov=app --cov-report=term-missing`.
 - **Type checking**: `pytest-mypy` runs mypy as part of the test collection phase.

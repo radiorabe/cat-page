@@ -1,9 +1,10 @@
 """Configure test environment."""
 
+from collections.abc import AsyncGenerator
 from html.parser import HTMLParser
 
 import pytest
-from starlette.testclient import TestClient
+from quart.typing import TestClientProtocol
 
 from app import server
 
@@ -40,6 +41,8 @@ def cat_parser(cat_path: str = CAT_PATH) -> CatImgLinkHTMLParser:
 
 
 @pytest.fixture
-def client() -> TestClient:
+async def client() -> AsyncGenerator[TestClientProtocol, None]:
     """Server for testing."""
-    return TestClient(server.create_app(server.get_config(parse=False)))
+    app = server.create_app(server.get_config(parse=False))
+    async with app.test_client() as c:
+        yield c

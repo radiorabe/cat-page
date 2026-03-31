@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import asyncio
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Self
@@ -9,16 +10,14 @@ from typing import TYPE_CHECKING, Any, Self
 if TYPE_CHECKING:  # pragma: no cover
     from argparse import Namespace as ArgparseNamespace
 
-    from starlette.requests import Request
+    from quart.typing import ResponseReturnValue
 
-import uvicorn
 from cachelib.simple import SimpleCache
 from configargparse import ArgumentParser  # type: ignore[import-untyped]
+from hypercorn.asyncio import serve
+from hypercorn.config import Config
 from jinja2 import Environment, FileSystemLoader
-from starlette.applications import Starlette
-from starlette.responses import JSONResponse, RedirectResponse, Response
-from starlette.routing import Mount, Route
-from starlette.staticfiles import StaticFiles
+from quart import Quart, Response, jsonify, redirect
 
 __version__ = "0.7.0"
 
@@ -107,7 +106,7 @@ class Server:
             autoescape=True,
         )
 
-    async def on_site(self: Self, _: Request) -> Response:
+    async def on_site(self: Self) -> ResponseReturnValue:
         """Return main / page."""
         return self._render_template(
             "index.html",
@@ -117,28 +116,25 @@ class Server:
             version=__version__,
         )
 
-    async def on_service_worker(self: Self, _: Request) -> Response:
+    async def on_service_worker(self: Self) -> ResponseReturnValue:
         """Return a service worker for SPA reasons."""
         return self._render_template(
             "sw.js",
-            media_type="application/javascript",
+            mimetype="application/javascript",
         )
 
-    async def on_api(self: Self, _: Request) -> Response:
+    async def on_api(self: Self) -> ResponseReturnValue:
         """Return links as JSON."""
-        return JSONResponse({"version": __version__, "links": self.links})
+        return jsonify({"version": __version__, "links": self.links})
 
-    async def on_hack(self: Self, _: Request) -> Response:
+    async def on_hack(self: Self) -> ResponseReturnValue:
         """Rickroll people trying to break in."""
-        return RedirectResponse(
-            "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            status_code=302,
-        )
+        return redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
 
     def _render_template(
         self: Self,
         template_name: str,
-        media_type: str = "text/html",
+        mimetype: str = "text/html",
         **context: Any,  # noqa: ANN401
     ) -> Response:
         """Render template to cache and keep in cache forever.
@@ -151,51 +147,50 @@ class Server:
             tpl = self.jinja_env.get_template(template_name)
             self.cache.set(template_name, tpl.render(**context), timeout=0)
 
-        return Response(self.cache.get(template_name), media_type=media_type)
+        return Response(self.cache.get(template_name), mimetype=mimetype)  # type: ignore[return-value]
 
 
-def create_app(config: ArgparseNamespace | None = None) -> Starlette:
+def create_app(config: ArgparseNamespace | None = None) -> Quart:
     """Create the ASGI app."""
     if config is None:
         config = get_config(parse=False)
     srv = Server(config)
-    routes: list[Route | Mount] = [
-        Route("/", srv.on_site),
-        Route("/sw.js", srv.on_service_worker),
-        Route("/api", srv.on_api),
-        Route("/.env", srv.on_hack),
-        Route("/wp-login.php", srv.on_hack),
-        Route("/wp-admin", srv.on_hack),
-    ]
-    if config.static:
-        routes.append(
-            Mount("/static", StaticFiles(directory=Path(__file__).parent / "static")),
-        )
-    return Starlette(routes=routes)
+    static_folder = str(Path(__file__).parent / "static") if config.static else None
+    app = Quart(
+        __name__,
+        static_folder=static_folder,
+        static_url_path="/static",
+    )
+    app.add_url_rule("/", "site", srv.on_site)
+    app.add_url_rule("/sw.js", "service_worker", srv.on_service_worker)
+    app.add_url_rule("/api", "api", srv.on_api)
+    app.add_url_rule("/.env", "hack_env", srv.on_hack)
+    app.add_url_rule("/wp-login.php", "hack_wp_login", srv.on_hack)
+    app.add_url_rule("/wp-admin", "hack_wp_admin", srv.on_hack)
+    return app
+
+
+def _make_hypercorn_config(config: ArgparseNamespace) -> Config:  # pragma: no cover
+    """Build a Hypercorn Config from app config."""
+    hconfig = Config()
+    hconfig.bind = [f"{config.address}:{config.port}"]
+    return hconfig
 
 
 def run_devserver(config: ArgparseNamespace) -> None:  # pragma: no cover
-    """Run a uvicorn dev server with auto-reload."""
+    """Run a Hypercorn dev server with auto-reload."""
     logger.info("Starting development server")
-    uvicorn.run(
-        "app.server:create_app",
-        factory=True,
-        host=config.address,
-        port=config.port,
-        reload=True,
-    )
+    hconfig = _make_hypercorn_config(config)
+    hconfig.use_reloader = True
+    asyncio.run(serve(create_app(config), hconfig))
 
 
 def run_webserver(config: ArgparseNamespace) -> None:  # pragma: no cover
-    """Run the production uvicorn server."""
+    """Run the production Hypercorn server."""
     logger.info("Starting production server")
-    uvicorn.run(
-        "app.server:create_app",
-        factory=True,
-        host=config.address,
-        port=config.port,
-        workers=config.thread_pool,
-    )
+    hconfig = _make_hypercorn_config(config)
+    hconfig.workers = config.thread_pool
+    asyncio.run(serve(create_app(config), hconfig))
 
 
 def main() -> None:  # pragma: no cover
