@@ -34,7 +34,7 @@ app/
 
 - **Single-file architecture**: All logic lives in `server.py`. Do not split into multiple
   modules unless the file grows substantially.
-- **Async handlers**: All route handlers are `async def` and take no `request` argument —
+- **Async handlers**: All route handlers are `async def` with no `request` parameter —
   use `quart.request` context variable if request data is needed in the future.
 - **Return type**: Handler return type is `ResponseReturnValue` (from `quart.typing`), which
   covers Quart/Werkzeug responses, strings, dicts, and tuples.
@@ -49,6 +49,8 @@ app/
   Config files are searched in `/etc/`, `~`, and `.` (current directory).
 - **`create_app()`**: Accepts an optional `ArgparseNamespace`; when called without arguments
   it reads config from env vars / config files.
+- **Server startup**: `Quart.run()` is used for both dev (`use_reloader=True`) and prod
+  (`use_reloader=False`). Hypercorn is used internally by Quart and is not imported directly.
 
 ## Configuration Reference
 
@@ -59,19 +61,17 @@ app/
 | `--links` | `PAGE_LINKS` | Three example links | Repeatable `Name;URL` entries |
 | `--address` | `PAGE_ADDRESS` | `127.0.0.1` | Bind address |
 | `--port` | `PAGE_PORT` | `8080` | Bind port |
-| `--thread-pool` | `PAGE_THREADPOOL` | `30` | Number of Hypercorn worker processes |
-| `--dev` / `--no-dev` | — | `False` | Use Hypercorn with `--reload` instead of multi-worker |
+| `--dev` / `--no-dev` | — | `False` | Use `use_reloader=True` (auto-reload on code changes) |
 | `--static` / `--no-static` | — | `True` | Serve `/static` via Quart built-in static handling |
 
 ## Running Locally
 
 ```bash
-poetry run catpage                       # production (Hypercorn, multi-worker)
-poetry run python -m app.server --dev    # development (Hypercorn, auto-reload)
+poetry run catpage                       # production (Quart/Hypercorn, no auto-reload)
+poetry run python -m app.server --dev    # development (Quart/Hypercorn, auto-reload)
 ```
 
 ## llms.txt
 
 - [quart.palletsprojects.com](https://quart.palletsprojects.com/) – Quart async ASGI framework (pallets project)
-- [hypercorn.readthedocs.io](https://hypercorn.readthedocs.io/) – Hypercorn ASGI server
 - [jinja.palletsprojects.com](https://jinja.palletsprojects.com/) – Jinja2 templating engine

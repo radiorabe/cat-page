@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 import logging
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Self
@@ -14,8 +13,6 @@ if TYPE_CHECKING:  # pragma: no cover
 
 from cachelib.simple import SimpleCache
 from configargparse import ArgumentParser  # type: ignore[import-untyped]
-from hypercorn.asyncio import serve
-from hypercorn.config import Config
 from jinja2 import Environment, FileSystemLoader
 from quart import Quart, Response, jsonify, redirect
 
@@ -50,7 +47,6 @@ def get_config(*, parse: bool = True) -> ArgparseNamespace:
     parser.add_argument("--links", env_var="PAGE_LINKS", action="append", default=[])
     parser.add_argument("--address", env_var="PAGE_ADDRESS", default="127.0.0.1")
     parser.add_argument("--port", env_var="PAGE_PORT", default=8080)
-    parser.add_argument("--thread-pool", env_var="PAGE_THREADPOOL", default=30)
 
     def add_bool_arg(
         parser: ArgumentParser,
@@ -170,27 +166,16 @@ def create_app(config: ArgparseNamespace | None = None) -> Quart:
     return app
 
 
-def _make_hypercorn_config(config: ArgparseNamespace) -> Config:  # pragma: no cover
-    """Build a Hypercorn Config from app config."""
-    hconfig = Config()
-    hconfig.bind = [f"{config.address}:{config.port}"]
-    return hconfig
-
-
 def run_devserver(config: ArgparseNamespace) -> None:  # pragma: no cover
-    """Run a Hypercorn dev server with auto-reload."""
+    """Run the development server with auto-reload."""
     logger.info("Starting development server")
-    hconfig = _make_hypercorn_config(config)
-    hconfig.use_reloader = True
-    asyncio.run(serve(create_app(config), hconfig))
+    create_app(config).run(host=config.address, port=config.port, use_reloader=True)
 
 
 def run_webserver(config: ArgparseNamespace) -> None:  # pragma: no cover
-    """Run the production Hypercorn server."""
+    """Run the production server."""
     logger.info("Starting production server")
-    hconfig = _make_hypercorn_config(config)
-    hconfig.workers = config.thread_pool
-    asyncio.run(serve(create_app(config), hconfig))
+    create_app(config).run(host=config.address, port=config.port, use_reloader=False)
 
 
 def main() -> None:  # pragma: no cover
