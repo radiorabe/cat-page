@@ -37,7 +37,7 @@ pytest-cov = "^7.1.0"
 pytest-mypy = "^1.0.1"
 pytest-random-order = "^1.2.0"
 pytest-ruff = "^0.5"
-ruff = "^0.15.7"
+ruff = "^0.15.9"
 
 [tool.pytest.ini_options]
 minversion = "9.0"
