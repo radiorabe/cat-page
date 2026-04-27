@@ -13,6 +13,6 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/schedule-trivy.yaml@5459c6e6550bcc6969303a65ef6c44bb1cd0ccf1 # v0.43.2
+    uses: radiorabe/actions/.github/workflows/schedule-trivy.yaml@f49d301c653f9aa0d99bec7b7f18f2d789e93fa7 # v0.43.4
     with:
       image-ref: 'ghcr.io/radiorabe/catpage:latest'
