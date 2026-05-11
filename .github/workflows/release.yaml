@@ -16,16 +16,20 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@f49d301c653f9aa0d99bec7b7f18f2d789e93fa7 # v0.43.4
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@7a3366ebda9b91bf943bf09527f4d7a5d8d10800 # v0.44.0
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
       display-name: 'Cat Page'
       tags: 'minimal rhel9 rabe s2i python python311 catpage'
-  release-mkdocs:
+  release-docs:
     permissions:
-      contents: write
-    uses: radiorabe/actions/.github/workflows/release-mkdocs.yaml@f49d301c653f9aa0d99bec7b7f18f2d789e93fa7 # v0.43.4
+      contents: read
+      pages: write
+      id-token: write
+    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@7a3366ebda9b91bf943bf09527f4d7a5d8d10800 # v0.44.0
+    with:
+      requirements: mkdocstrings[autorefs]
   helm-chart:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/v')

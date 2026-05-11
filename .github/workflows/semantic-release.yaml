@@ -12,6 +12,6 @@ jobs:
   semantic-release:
     permissions:
       contents: read
-    uses: radiorabe/actions/.github/workflows/semantic-release.yaml@f49d301c653f9aa0d99bec7b7f18f2d789e93fa7 # v0.43.4
+    uses: radiorabe/actions/.github/workflows/semantic-release.yaml@7a3366ebda9b91bf943bf09527f4d7a5d8d10800 # v0.44.0
     secrets:
       RABE_ITREAKTION_GITHUB_TOKEN: ${{ secrets.RABE_ITREAKTION_GITHUB_TOKEN }}
