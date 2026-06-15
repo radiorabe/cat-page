@@ -1,4 +1,4 @@
-FROM ghcr.io/radiorabe/s2i-python:3.4.5@sha256:cbbcc3abdc6cecb2b646dccd3f2e2752b1fd739935932813aeb1485869fcc23d AS build
+FROM ghcr.io/radiorabe/s2i-python:3.5.0@sha256:8c020bc0808b8fac25cad6a1e849d0d4c305417ebcdeb9d9ac0fe4c6e430eb23 AS build
 
 COPY --chown=1001:0 ./ /opt/app-root/src/
 
@@ -8,7 +8,7 @@ RUN    npm install \
 RUN    python -mbuild
 
 
-FROM ghcr.io/radiorabe/python-minimal:3.3.5@sha256:d9e60dd6532d288380ba5604d2a3688e483ed69e573b8762033a60a9dbf0fb07 AS app
+FROM ghcr.io/radiorabe/python-minimal:3.4.0@sha256:371258ed70856e017b60c95201643cedaeae7a97bb78fc134be845a09dfb2dcf AS app
 
 COPY --from=build /opt/app-root/src/dist/*.whl /tmp/dist/
 
