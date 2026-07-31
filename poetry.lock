@@ -868,14 +868,14 @@ ruff = ">=0.0.242"
 
 [[package]]
 name = "quart"
-version = "0.20.0"
+version = "0.21.0"
 description = "A Python ASGI web framework with the same API as Flask"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "quart-0.20.0-py3-none-any.whl", hash = "sha256:003c08f551746710acb757de49d9b768986fd431517d0eb127380b656b98b8f1"},
-    {file = "quart-0.20.0.tar.gz", hash = "sha256:08793c206ff832483586f5ae47018c7e40bdd75d886fee3fabbdaa70c2cf505d"},
+    {file = "quart-0.21.0-py3-none-any.whl", hash = "sha256:a21377754d52ee3a9de7f9bff140dc3bb055e2eec8ac187da1789b36cf4c66ca"},
+    {file = "quart-0.21.0.tar.gz", hash = "sha256:ec05a784151386cf87df51f764825d55f3ac402df4f04fd1dc81faca8897ceda"},
 ]
 
 [package.dependencies]
@@ -968,4 +968,4 @@ h11 = ">=0.16.0,<1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "dd2d931cfd29ebca8fcb4e2771382fa9d264ae6e82389977d4ad032e08f98202"
+content-hash = "e9f0d3e10dcda190c245922d43aa6264072c6ad06362ae50f3da2f51ef1a0c28"
