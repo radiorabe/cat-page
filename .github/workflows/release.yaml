@@ -16,7 +16,7 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@5dafb461cea1f8b296d89297dc6de7bd0891f0d2 # v0.44.2
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
@@ -27,7 +27,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@5dafb461cea1f8b296d89297dc6de7bd0891f0d2 # v0.44.2
+    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
     with:
       requirements: mkdocstrings[autorefs]
   helm-chart:
@@ -59,7 +59,7 @@ jobs:
         run: helm package --version ${STEPS_CHARTMETA_VERSION} --app-version ${STEPS_CHARTMETA_VERSION} --destination=dist charts/catpage
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@af1e73f918a031802d376d3c8bbc3fe56130a9b0 # v4.4.0
+        uses: docker/login-action@06fb636fac595d6fb4b28a5dfcb21a6f5091859c # v4.5.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
