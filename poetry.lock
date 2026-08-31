@@ -70,15 +70,23 @@ files = [
 
 [[package]]
 name = "cachelib"
-version = "0.14.0"
+version = "0.17.0"
 description = "A collection of cache libraries in the same API interface."
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.11"
 groups = ["main"]
 files = [
-    {file = "cachelib-0.14.0-py3-none-any.whl", hash = "sha256:4671000b032baa8fac47ad19850f4f522785cee764b4e04c5cfe8955a18d67de"},
-    {file = "cachelib-0.14.0.tar.gz", hash = "sha256:73fedcadd0ba818fb2bb9f3c7cd5fcc2a71e86286f1842f55f28d500faee17f1"},
+    {file = "cachelib-0.17.0-py3-none-any.whl", hash = "sha256:f83909b6f78741c3a5d76d292d13bf24964ffb13e00ea1d18f92e20599766ce0"},
+    {file = "cachelib-0.17.0.tar.gz", hash = "sha256:f3c7dc8d3c1132ab699681ffdf8a52d341d9425ac1401c538cf0b1d87b1677c8"},
 ]
+
+[package.extras]
+dynamodb = ["boto3 (>=1.43.4)"]
+memcached = ["pylibmc (>=1.6.3)"]
+mongodb = ["pymongo (>=4.11)"]
+redis = ["redis (>=6.0.0)"]
+uwsgi = ["uwsgi (>=2.0.28)"]
+valkey = ["valkey (>=6.1.0)"]
 
 [[package]]
 name = "click"
@@ -975,4 +983,4 @@ h11 = ">=0.16.0,<1"
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.12"
-content-hash = "11f539dc48a48be5dbb36cefa4208c031f0343140767a355a42106e0435cea5a"
+content-hash = "3f88e6e1d2238e0ddff6dea489f9f9cd51f05ab9ccd8981d0a7d76d9b4cb5741"
