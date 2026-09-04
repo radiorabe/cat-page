@@ -16,7 +16,7 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@c26933dd78f0f76b51d1e3bb80ac099bfe0ee89b # v0.45.0
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
@@ -27,7 +27,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
+    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@c26933dd78f0f76b51d1e3bb80ac099bfe0ee89b # v0.45.0
     with:
       requirements: mkdocstrings[autorefs]
   helm-chart:
