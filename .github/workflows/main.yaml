@@ -9,18 +9,18 @@ jobs:
   pre-commit:
     permissions:
       contents: read
-    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
+    uses: radiorabe/actions/.github/workflows/test-pre-commit.yaml@c26933dd78f0f76b51d1e3bb80ac099bfe0ee89b # v0.45.0
   python-poetry:
     permissions:
       contents: read
-    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
+    uses: radiorabe/actions/.github/workflows/test-python-poetry.yaml@c26933dd78f0f76b51d1e3bb80ac099bfe0ee89b # v0.45.0
     with:
       version: '3.12'
   github-actions:
     permissions:
       contents: read
       security-events: write # so zizmor can publish results to the Security tab
-    uses: radiorabe/actions/.github/workflows/test-github-actions.yaml@953c51da7e4c2c681f15c70513cb803c8fa461cc # v0.44.3
+    uses: radiorabe/actions/.github/workflows/test-github-actions.yaml@c26933dd78f0f76b51d1e3bb80ac099bfe0ee89b # v0.45.0
   helm-chart:
     name: Test Helm Chart
     runs-on: ubuntu-latest
