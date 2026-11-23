@@ -16,7 +16,7 @@ jobs:
       packages: write
       security-events: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-container.yaml@6373540d4ab86c4ce044b6a67e96aecddf22c7c9 # v0.45.1
+    uses: radiorabe/actions/.github/workflows/release-container.yaml@9d40a934aae300f2fa9a962b8d19e0f093c83a3a # v0.45.2
     with:
       image: 'ghcr.io/radiorabe/catpage'
       name: 'catpage'
@@ -27,7 +27,7 @@ jobs:
       contents: read
       pages: write
       id-token: write
-    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@6373540d4ab86c4ce044b6a67e96aecddf22c7c9 # v0.45.1
+    uses: radiorabe/actions/.github/workflows/release-zensical.yaml@9d40a934aae300f2fa9a962b8d19e0f093c83a3a # v0.45.2
     with:
       requirements: mkdocstrings[autorefs]
   helm-chart:
@@ -49,7 +49,7 @@ jobs:
         run: echo version=${GITHUB_REF#refs/tags/v} >> $GITHUB_OUTPUT
 
       - name: Set up Helm
-        uses: azure/setup-helm@9bc31f4ebc9c6b171d7bfbaa5d006ae7abdb4310 # v5.0.1
+        uses: azure/setup-helm@2f5e7bc67f1f9972ab16657bb795f36d8f04de0e # v5.1.0
         with:
           version: v3.20.1
 
