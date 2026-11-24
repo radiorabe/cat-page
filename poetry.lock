@@ -142,18 +142,18 @@ markers = {main = "platform_system == \"Windows\"", dev = "sys_platform == \"win
 
 [[package]]
 name = "configargparse"
-version = "1.9.0"
+version = "1.10.1"
 description = "A drop-in replacement for argparse that allows options to also be set via config files and/or environment variables."
 optional = false
 python-versions = ">=3.6"
 groups = ["main"]
 files = [
-    {file = "configargparse-1.9.0-py3-none-any.whl", hash = "sha256:e4ecc54d821ca97c43e6152403f40e158aff79d809c3447746fa92b136dc1e31"},
-    {file = "configargparse-1.9.0.tar.gz", hash = "sha256:48d9c22affe4ac419b4dd0691fa929d759e1f99574be41826785f2dbf3da63a5"},
+    {file = "configargparse-1.10.1-py3-none-any.whl", hash = "sha256:148ffe1ba93304bbcb4a832f513e6d51c08d214215f1e943954f6d01f2394621"},
+    {file = "configargparse-1.10.1.tar.gz", hash = "sha256:8ee7c4429e6402b881c9a85569eb9484db2f63260718b45c67c59625284371c8"},
 ]
 
 [package.extras]
-test = ["PyYAML", "black", "mock", "pytest", "pytest-cov", "pytest-subtests", "toml"]
+test = ["PyYAML", "black", "pytest", "pytest-cov", "pytest-subtests", "toml"]
 toml = ["toml"]
 yaml = ["PyYAML"]
 
